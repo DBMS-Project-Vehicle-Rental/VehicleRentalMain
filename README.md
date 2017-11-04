@@ -12,5 +12,5 @@ To install all dependencies :
 (```sudo``` may be required)
 
 To run the app (from project directory) :
-```npm start```
-Use ```DEBUG=vehiclerentalmain:* npm start``` to execute along with DEBUG logs on terminal
+```npm run devstart```
+Use ```DEBUG=vehiclerentalmain:* npm run devstart``` to execute along with DEBUG logs on terminal
