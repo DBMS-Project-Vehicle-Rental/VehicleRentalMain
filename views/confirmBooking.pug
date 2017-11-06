@@ -1,0 +1,54 @@
+doctype html
+html
+  head
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+    // link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(href='//fonts.googleapis.com/css?family=Josefin+Sans', rel='stylesheet')
+    link(href='//fonts.googleapis.com/css?family=Raleway', rel='stylesheet')
+    link(href='/stylesheets/style.css', rel='stylesheet')
+  body
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='#') RentalRides
+      div
+        label Welcome  #{uid} !
+    header
+      ul
+        li
+          a(href="/homeUser") Vehicles
+        li
+          a(href='/bookHistory') Booking History
+        li
+          a(href='/settings') Settings
+    div
+      h2 Booking Summary
+    div
+      for data in vdata
+        label Uid : #{uid}
+        br
+        label Plate number is : #{data.plno}
+        br 
+        label Model is : #{data.model}
+        br
+        label Runs on : #{data.type}
+        br
+        label Color is : #{data.color}
+        br
+        label Company is : #{data.company}
+        br 
+        label Seats : #{data.seats}
+        br
+        label Available at Garage with id : #{data.gid}
+        br
+        label From : #{fromDate}
+        br
+        label till : #{toDate}
+        br
+    div
+    button
+      a(href='#') Pay

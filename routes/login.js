@@ -39,7 +39,7 @@ router.post('/verify', function(req, res, next) {
                     //auth = true;
                     //res.write('Credentials verified... Redirecting to homepage...')
                     //sleep.sleep(2)
-                    res.redirect('/homeUser')
+                    res.redirect('/homeUser?uid=' + req.body.username)
                 }
                 else {
                     console.log('False')
@@ -62,7 +62,7 @@ router.post('/verify', function(req, res, next) {
                     //auth = true;
                     //res.write('Credentials verified... Redirecting to homepage...')
                     //sleep.sleep(2)
-                    res.redirect('/homeEmp')
+                    res.redirect('/homeEmp?uid=' + req.body.username)
                 }
                 else {
                     console.log('False')

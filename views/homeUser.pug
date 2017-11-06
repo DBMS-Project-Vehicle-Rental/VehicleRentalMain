@@ -1,1 +1,75 @@
-n
+doctype html
+html
+  head
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+    script(type='text/javascript', src='//cdn.jsdelivr.net/jquery/1/jquery.min.js')
+    script(type='text/javascript', src='//cdn.jsdelivr.net/momentjs/latest/moment.min.js')
+    script(type='text/javascript', src='//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js')
+    link(rel='stylesheet', type='text/css', href='//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css')
+    // link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(href='//fonts.googleapis.com/css?family=Josefin+Sans', rel='stylesheet')
+    link(href='//fonts.googleapis.com/css?family=Raleway', rel='stylesheet')
+    link(href='/stylesheets/style.css', rel='stylesheet')
+    script(type='text/javascript').
+      $(function() {
+      $('input[name="daterange"]').daterangepicker(
+      {
+      locale: {
+      format: 'YYYY-MM-DD'
+      }
+      });
+      });
+  body
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='#') RentalRides
+      div
+        label Welcome  #{uid} !
+    header
+      ul
+        li
+          a(href='') Vehicles
+        li
+          a(href='/bookHistory') Booking History
+        li
+          a(href='/settings') Settings
+    div
+      div
+        form(method='post', action='/homeUser/getDate')
+          | Date:
+          input(type='text', name='daterange', placeholder='Choose', value=' ')
+          input(type='submit', name='okay', value='Go !')
+      div
+        form(method='post', action='/homeUser')
+          ul
+            li
+              input(type='submit', name='car', value='car')
+              label Cars
+            li
+              input(type='submit', name='bike', value='bike')
+              label Bikes
+    div Cars/Bikes
+    div
+      if (vdata.length)
+        form(method='post', action='/homeUser/bookingVehicle')
+          ul
+            for data in vdata
+              li
+                div
+                  label Plate number is #{data.plno}
+                  br 
+                  label Model is #{data.model}
+                  br
+                  label Runs on #{data.type}
+                  br
+                  label Color is #{data.color}
+                  br
+                  input(type='radio', name='chosen', value=data.plno)
+          input(type='submit', name='submitting', value='Book')
+      else
+        label No Vehicles Available !
