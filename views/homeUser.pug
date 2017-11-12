@@ -23,6 +23,15 @@ html
       }
       });
       });
+    script(type='text/javascript').
+      function empty() {
+      var x;
+      x = document.getElementById("dates").value;
+      if (x == null) {
+      alert("Enter Valid Dates !");
+      return false;
+      };
+      }
   body
     nav.navbar.navbar-inverse
       .container-fluid
@@ -35,7 +44,7 @@ html
         li
           a(href='') Vehicles
         li
-          a(href='/bookHistory') Booking History
+          a(href='/previousBookings') Booking History
         li
           a(href='/settings') Settings
         li
@@ -44,7 +53,7 @@ html
       div
         form(method='post', action='/homeUser/getDate')
           | Date:
-          input(type='text', name='daterange', placeholder='Choose', value=' ')
+          input#dates(type='text', name='daterange')
           input(type='submit', name='okay', value='Go !')
       div
         form(method='post', action='/homeUser')
@@ -72,6 +81,6 @@ html
                   label Color is #{data.color}
                   br
                   input(type='radio', name='chosen', value=data.plno)
-          input(type='submit', name='submitting', value='Book')
+          input(type='submit', name='submitting', value='Book', onclick='return empty()')
       else
         label No Vehicles Available !

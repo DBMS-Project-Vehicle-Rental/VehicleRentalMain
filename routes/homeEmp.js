@@ -11,8 +11,8 @@ router.get('/', function(req, res, next) {
 
 		var con = mysql.createConnection({
 			host: 'localhost',
-			user: 'devansh',
-			password: 'kanha0812',
+			user: 'root',
+			password: 'p@t@n@hi',
 			database: 'VEHICLE_RENTAL'
 		});
 
@@ -24,7 +24,6 @@ router.get('/', function(req, res, next) {
 			var sql = "SELECT User_ID, Name, e.G_ID, G_Name, Location, vd.Model_Name, vd.Plate_No FROM Employee	e, Garage g, VehicleDetails vd WHERE e.User_ID = '" + empid + "' AND g.G_ID = e.G_ID AND vd.G_ID = e.G_ID;";
 			con.query(sql, function(err, result) {
 				if(err) throw err;
-
 				var data = [];
 
 				var ob = new Object();

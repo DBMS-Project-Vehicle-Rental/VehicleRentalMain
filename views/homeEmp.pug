@@ -40,13 +40,13 @@ html
         ul
           li
             div
-              label Employee Name : #{data.ename}
+              label Employee Name : #{data[0].ename}
               br 
-              label Garage ID : #{data.gid}
+              label Garage ID : #{data[0].gid}
               br
-              label Garage Location : #{data.gloc}
+              label Garage Location : #{data[0].gloc}
               br
-              label Vehicles at Garage #{data.gid}
+              label Vehicles at Garage #{data[0].gid}
               br
         table(border='1')
           tr
@@ -57,4 +57,4 @@ html
               td #{d.modname}
               td #{d.plno}
       else
-        label No Vehicles Available !
+        label No Details Availabe !

@@ -7,8 +7,11 @@ router.get('/', function(req, res, next) {
 	req.session.id = "";
 	req.session.user = 0;
 	req.session.emp = 0;
-
-	res.render('login', { title: 'Login' });
+	// if(req.query.err==302)
+	// 	res.render('login', { title: 'Login', error: '302'});
+	// else
+		res.render('login', { title: 'Login' });//, error: 'None'});
+	
 });
 
 // POST from login page.
@@ -16,8 +19,8 @@ router.post('/verify', function(req, res, next) {
 	// Verify login crendentials from DB.
 	var con = mysql.createConnection({
 		host: 'localhost',
-		user: 'devansh',
-		password: 'kanha0812',
+		user: 'root',
+		password: 'p@t@n@hi',
 		database: 'VEHICLE_RENTAL'
 	});
 

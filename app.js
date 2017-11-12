@@ -11,6 +11,8 @@ var login = require('./routes/login');
 var homeUser = require('./routes/homeUser');
 var homeEmp = require('./routes/homeEmp');
 var cb = require('./routes/confirmBooking');
+var pb = require('./routes/previousBookings');
+
 
 var app = express();
 
@@ -40,6 +42,7 @@ app.use('/login', login);
 app.use('/homeUser', homeUser);
 app.use('/homeEmp', homeEmp);
 app.use('/confirmBooking', cb);
+app.use('/previousBookings', pb);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

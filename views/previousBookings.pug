@@ -20,35 +20,34 @@ html
     header
       ul
         li
-          a(href="/homeUser") Vehicles
+          a(href='/homeUser') Vehicles
         li
-          a(href='/previousBookings') Booking History
+          a(href='#') Booking History
         li
           a(href='/settings') Settings
+        li
+          a(href='/login') Logout
     div
-      h2 Booking Summary
+      h2 Booking History
     div
-      for data in vdata
-        label Uid : #{uid}
-        br
-        label Plate number is : #{data.plno}
-        br 
-        label Model is : #{data.model}
-        br
-        label Runs on : #{data.type}
-        br
-        label Color is : #{data.color}
-        br
-        label Company is : #{data.company}
-        br 
-        label Seats : #{data.seats}
-        br
-        label Available at Garage with id : #{data.gid}
-        br
-        label From : #{fromDate}
-        br
-        label till : #{toDate}
-        br
+      if(vdata.length)
+        for data in vdata
+          label Payment id : #{data.payid}
+          br
+          label Payed on : #{data.paydt}
+          br 
+          label Method : #{data.method}
+          br
+          label Amount : #{data.amt}
+          br
+          label Booking id : #{data.bid}
+          br
+          label Plate No : #{data.plno}
+          br 
+          label Booked on : #{data.bdt}
+          br
+          label For a period of  : #{data.ndays} days
+          br
+      else
+        label No Bokkings Yet !    
     div
-    button
-      a(href='#') Pay
