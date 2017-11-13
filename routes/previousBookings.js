@@ -13,8 +13,8 @@ router.get('/', function(req, res, next) {
 
 		var con = mysql.createConnection({
 			host: 'localhost',
-			user: 'root',
-			password: 'p@t@n@hi',
+			user: 'devansh',
+			password: 'kanha0812',
 			database: 'VEHICLE_RENTAL'
 		});
 
@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
 
 			console.log('Connected');
 
-			var sql = "Select Pay_ID, Pay_Date, Amount, Method, b.Book_ID as BID,Plate_No, Book_Date, No_of_Days from Booking b, Payment p where p.Book_ID = b.Book_ID and p.User_ID = b.User_ID and Success = 1 and p.User_ID = '"+userid+"';";
+			var sql = "SELECT Pay_ID, Pay_Date, Amount, Method, b.Book_ID AS BID, Plate_No, Start_Date, No_of_Days FROM Booking b, Payment p WHERE p.Book_ID = b.Book_ID AND p.User_ID = b.User_ID AND Success = 1 AND p.User_ID = '" + userid + "';";
 			con.query(sql, function(err, result) {
 				if(err) throw err;
 

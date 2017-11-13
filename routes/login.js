@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 	// 	res.render('login', { title: 'Login', error: '302'});
 	// else
 		res.render('login', { title: 'Login' });//, error: 'None'});
-	
+
 });
 
 // POST from login page.
@@ -19,8 +19,8 @@ router.post('/verify', function(req, res, next) {
 	// Verify login crendentials from DB.
 	var con = mysql.createConnection({
 		host: 'localhost',
-		user: 'root',
-		password: 'p@t@n@hi',
+		user: 'devansh',
+		password: 'kanha0812',
 		database: 'VEHICLE_RENTAL'
 	});
 

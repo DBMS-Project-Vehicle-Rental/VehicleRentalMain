@@ -1,12 +1,13 @@
 doctype html
 html
   head
-    title= title
+    title =title
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
     link(rel='stylesheet', href='/stylesheets/font-awesome.css')
     script(type='text/javascript', src='//cdn.jsdelivr.net/jquery/1/jquery.min.js')
     script(type='text/javascript', src='//cdn.jsdelivr.net/momentjs/latest/moment.min.js')
+    link(rel='stylesheet', type='text/css', href='//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
     link(href='//fonts.googleapis.com/css?family=Josefin+Sans', rel='stylesheet')
     link(href='//fonts.googleapis.com/css?family=Raleway', rel='stylesheet')
@@ -17,32 +18,30 @@ html
         .navbar-header
           a.navbar-brand(href='#') RentalRides
       div
-        label Welcome  #{eid} !
+        label Welcome  #{uid} !
     header
       ul
         li
+          a(href='/homeUser') Vehicles
+        li
+          a(href='/previousBookings') Booking History
+        li
+          a(href='/settings') Settings
+        li
           a(href='/login') Logout
-    div Info
     div
-      if (data.length)
-        ul
-          li
-            div
-              label Employee Name : #{data[0].ename}
-              br 
-              label Garage ID : #{data[0].gid}
-              br
-              label Garage Location : #{data[0].gloc}
-              br
-              label Vehicles at Garage #{data[0].gid}
-              br
-        table(border='1')
-          tr
-            th Vehicle Model Name
-            th Vehicle Plate No.
-          for d in vdata
-            tr
-              td #{d.modname}
-              td #{d.plno}
-      else
-        label No Details Availabe !
+      form(method='post', action='/settings/changePass')
+        label Old Password:
+        input(type="password", name="oldPass")
+        br
+        label New Password:
+        input(type="password", name="newPass")
+        br
+        input(type="submit", name="chgPass", value="Update")
+    div
+      if (valid == 0)
+        label Password changed successfully !!!
+      else if (valid == 1)
+        label Old password is wrong.
+      else if (valid == 2)
+        label Old password same as new password.
