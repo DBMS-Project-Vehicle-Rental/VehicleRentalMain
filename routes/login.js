@@ -2,6 +2,8 @@ var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
 
+var creds = require('../app');
+
 // GET login page.
 router.get('/', function(req, res, next) {
 	req.session.id = "";
@@ -17,10 +19,17 @@ router.get('/', function(req, res, next) {
 // POST from login page.
 router.post('/verify', function(req, res, next) {
 	// Verify login crendentials from DB.
-	var con = mysql.createConnection({
+	console.log(creds.creds[0].username);
+	/*var con = mysql.createConnection({
 		host: 'localhost',
 		user: 'devansh',
 		password: 'kanha0812',
+		database: 'VEHICLE_RENTAL'
+	});*/
+	var con = mysql.createConnection({
+		host: 'localhost',
+		user: creds.creds[0].username,
+		password: creds.creds[0].password,
 		database: 'VEHICLE_RENTAL'
 	});
 
@@ -49,7 +58,7 @@ router.post('/verify', function(req, res, next) {
 					//sleep.sleep(2)
 					//res.redirect('/homeUser?uid=' + req.body.username)
 					req.session.user = 1;
-					req.session.id = req.body.username;
+					req.session.id = req.body.username.toLowerCase();
 					res.redirect('/homeUser');
 				}
 				else {
@@ -92,6 +101,7 @@ router.post('/verify', function(req, res, next) {
 				}
 			});
 		}
+		//con.end();
 	});
 });
 module.exports = router;

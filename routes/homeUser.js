@@ -2,6 +2,8 @@ var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
 
+var creds = require('../app');
+
 var userid;
 var fromDate;
 var toDate;
@@ -20,7 +22,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/getDate', function(req, res, next) {
-
 	var dates = String(req.body.daterange).split(" ");
 	fromDate = dates[0];
 	toDate = dates[2];
@@ -30,8 +31,8 @@ router.post('/getDate', function(req, res, next) {
 router.post('/', function(req, res, next) {
 	var con = mysql.createConnection({
 		host: 'localhost',
-		user: 'root',
-		password: 'p@t@n@hi',
+		user: creds.creds[0].username,
+		password: creds.creds[0].password,
 		database: 'VEHICLE_RENTAL'
 	});
 
@@ -45,7 +46,7 @@ router.post('/', function(req, res, next) {
 		} else {
 			toSend = 'bike';
 		}
-		var sql = "Select Plate_No,v.Model_Name as Model,Company,Type,V_Type,Seats,Quantity,Color,G_ID from Vehicles v, VehicleDetails vd where Quantity>0 and v.Model_Name=vd.Model_Name and V_type='"+toSend+"';";
+		var sql = "Select Plate_No,v.Model_Name as Model,Company,Type,V_Type,Seats,Quantity,Color,G_ID, Cost from Vehicles v, VehicleDetails vd where Quantity>0 and v.Model_Name=vd.Model_Name and V_type='"+toSend+"';";
 		console.log(sql);
 		con.query(sql, function(err, result) {
 			if(err) throw err;
@@ -61,7 +62,7 @@ router.post('/', function(req, res, next) {
 				elem["qty"]= result[i].Quantity;
 				elem["color"]= result[i].Color;
 				elem["gid"]= result[i].G_ID;
-
+				elem["cost"]= result[i].Cost;
 				vehicleData.push(elem);
 				//console.log(result[i]);
 			}

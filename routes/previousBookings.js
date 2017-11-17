@@ -2,6 +2,8 @@ var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
 
+var creds = require('../app');
+
 var userid;
 var fromDate;
 var toDate;
@@ -13,8 +15,8 @@ router.get('/', function(req, res, next) {
 
 		var con = mysql.createConnection({
 			host: 'localhost',
-			user: 'devansh',
-			password: 'kanha0812',
+			user: creds.creds[0].username,
+			password: creds.creds[0].password,
 			database: 'VEHICLE_RENTAL'
 		});
 

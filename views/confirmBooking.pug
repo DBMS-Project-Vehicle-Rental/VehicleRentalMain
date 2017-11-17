@@ -47,8 +47,20 @@ html
         br
         label From : #{fromDate}
         br
-        label till : #{toDate}
+        label Till : #{toDate}
         br
-    div
-    button
-      a(href='#') Pay
+        label Cost : #{data.cost}
+        br
+    form(method='post', action='/confirmBooking/payment')
+      label Mode of Payment:
+      input(type='radio', name='pay', value="Cash", checked="true")
+      label Cash
+      input(type='radio', name='pay', value="Credit")
+      label Credit
+      input(type='radio', name='pay', value="Wallet")
+      label Wallet
+      br
+      input#Pay(type="submit", name="Pay")
+      //div
+        a(href='/confirmBooking/payment')
+          button Pay

@@ -6,6 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session');
 
+var creds = [{
+	username: 'devansh',
+	password: 'kanha0812'
+}];
+
 var index = require('./routes/index');
 var login = require('./routes/login');
 var homeUser = require('./routes/homeUser');
@@ -13,7 +18,6 @@ var homeEmp = require('./routes/homeEmp');
 var cb = require('./routes/confirmBooking');
 var pb = require('./routes/previousBookings');
 var settings = require('./routes/settings');
-
 
 var app = express();
 
@@ -25,7 +29,7 @@ app.set('view engine', 'pug');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieSession({
@@ -65,3 +69,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+exports.creds = creds;
