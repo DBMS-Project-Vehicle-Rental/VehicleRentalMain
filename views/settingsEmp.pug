@@ -18,20 +18,18 @@ html
         .navbar-header
           a.navbar-brand(href='#') RentalRides
       div
-        label Welcome  #{uid} !
+        label Welcome  #{eid} !
     header
       ul
         li
-          a(href='/homeUser') Vehicles
+          a(href='/homeEmp') Garage Details
         li
-          a(href='/previousBookings') Booking History
-        li
-          a(href='/settings') Settings
+          a(href='/settingsEmp') Settings
         li
           a(href='/login') Logout
     div
       if (data.length)
-        label User ID: #{data[0].uid}
+        label Employee ID: #{data[0].uid}
         br
         label Email ID: #{data[0].email}
         br
@@ -39,15 +37,13 @@ html
         br
         label Address: #{data[0].address}
         br
-        label Wallet(Rs.): #{data[0].wallet}
-        br
     br
     div
       if (valid == 3)
-        form(method='post', action='/settings/change')
+        form(method='post', action='/settingsEmp/change')
           input(type="submit", name="chgPass", value="Update")
       if (valid == 4)
-        form(method='post', action='/settings/changePass')
+        form(method='post', action='/settingsEmp/changePass')
           label Old Password:
           input(type="password", name="oldPass", required='', autofocus='')
           br
@@ -64,5 +60,5 @@ html
         label Old password same as new password.
       br
       if (valid == 1 || valid == 2)
-        a(href='/settings')
+        a(href='/settingsEmp')
           button(value='Retry') Retry

@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session');
 
 var creds = [{
-	username: 'devansh',
-	password: 'kanha0812'
+	username: 'root',
+	password: 'p@t@n@hi'
 }];
 
 var index = require('./routes/index');
@@ -18,6 +18,7 @@ var homeEmp = require('./routes/homeEmp');
 var cb = require('./routes/confirmBooking');
 var pb = require('./routes/previousBookings');
 var settings = require('./routes/settings');
+var settingsEmp = require('./routes/settingsEmp');
 
 var app = express();
 
@@ -49,6 +50,7 @@ app.use('/homeEmp', homeEmp);
 app.use('/confirmBooking', cb);
 app.use('/previousBookings', pb);
 app.use('/settings', settings);
+app.use('/settingsEmp', settingsEmp);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

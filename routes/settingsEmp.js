@@ -9,7 +9,7 @@ var d = [];
 var ob = new Object();
 
 router.get('/', function(req, res, next) {
-	console.log("Entered /settings");
+	console.log("Entered /settingsEmp");
 
 	var con = mysql.createConnection({
 		host: 'localhost',
@@ -22,10 +22,10 @@ router.get('/', function(req, res, next) {
 		if(err) throw err;
 		console.log("Connected to VEHICLE_RENTAL");
 
-		if (req.session.user) {
+		if (req.session.emp) {
 			id = req.session.id;
 
-			var sql = "SELECT * FROM User WHERE User_ID = '" + id + "';";
+			var sql = "SELECT * FROM Employee WHERE User_ID = '" + id + "';";
 			con.query(sql, function(err, result) {
 				if(err) throw err;
 
@@ -34,16 +34,12 @@ router.get('/', function(req, res, next) {
 				ob['email'] = result[0].Email;
 				ob['pno'] = result[0].Phone_No;
 				ob['address'] = result[0].Address;
-				ob['wallet'] = result[0].Wallet;
 
 				d.push(ob);
-				res.render('settings', {title: 'User\'s Settings', uid: id, valid: 3, data: d});
+				res.render('settingsEmp', {title: 'Employee Settings', eid: id, valid: 3, data: d});
 				console.log(ob);
 				console.log(d);
 			});
-		// } else if (req.session.emp) {
-		// 	id = req.session.id;
-		// 	res.render('settings', {title: 'Employee Settings', eid: id, valid: 3, data: d});
 		} else {
 			res.redirect('/login');
 		}
@@ -53,13 +49,11 @@ router.get('/', function(req, res, next) {
 
 router.post('/change', function(req, res, next) {
 	id = req.session.id;
-	res.render('settings', {title: 'User\'s Settings', uid: id, valid: 4, data: d});
+	res.render('settingsEmp', {title: 'Employee Settings', eid: id, valid: 4, data: d});
 });
 
 router.post('/changePass', function(req, res, next) {
-	//res.render('settings', {title: 'User\'s Settings', uid: id, valid: 4, data: d});
-
-	var valid;
+  var valid;
 	id = req.session.id;
 
 	var con = mysql.createConnection({
@@ -73,17 +67,11 @@ router.post('/changePass', function(req, res, next) {
 		if(err) throw err;
 		console.log('Connected to VEHICLE_RENTAL');
 
-		if (req.session.user) {
-			var sql = "SELECT Password FROM User WHERE User_ID = '" + id + "';";
+		if (req.session.emp) {
+			var sql = "SELECT Password FROM Employee WHERE User_ID = '" + id + "';";
 
 			con.query(sql, function(err, result) {
 				if(err) throw err;
-
-				// ob['uid'] = result[0].User_ID;
-				// ob['email'] = result[0].Email;
-				// ob['pno'] = result[0].Phone_No;
-				// ob['address'] = result[0].Address;
-				// ob['wallet'] = result[0].Wallet;
 
 				console.log("Result: " + result);
 				if(req.body.oldPass == result[0].Password) {
@@ -92,7 +80,7 @@ router.post('/changePass', function(req, res, next) {
 					} else {
 						valid = 0;
 
-						sql = "UPDATE User SET Password = '" + req.body.newPass + "' WHERE User_ID = '" + id + "';";
+						sql = "UPDATE Employee SET Password = '" + req.body.newPass + "' WHERE User_ID = '" + id + "';";
 						con.query(sql, function(err, result) {
 							if(err) throw err;
 						})
@@ -106,17 +94,10 @@ router.post('/changePass', function(req, res, next) {
 
 				console.log("valid : " + valid);
 
-				res.render('settings', {title: 'User\'s Settings', uid: id, valid: valid, data: d});
+				res.render('settingsEmp', {title: 'Employee Settings', eid: id, valid: valid, data: d});
 			});
-
-			// var sql = "SELECT User_ID, Name, Email, Phone_No, Address, Wallet FROM User where User_ID = '" + id + "';";
-			//
-			// con.query(sql, function(err, result) {
-			// 	if(err) throw err;
-			// });
-			//
 		} else {
-				//Not User
+        //User Settings
 		}
 	});
 });

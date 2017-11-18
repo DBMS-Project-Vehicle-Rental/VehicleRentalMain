@@ -87,14 +87,14 @@ router.post('/payment', function(req, res, next) {
 
 				console.log(result);
 				if(result[0].poss == 1) {
-					alert("Success");
+					alert("Success","window");
 
-					var sql_3 = "INSERT INTO Booking (User_ID, Plate_No, Start_Date, End_Date, No_of_Days, Pay_ID) VALUES ('" + uid + "', '" + plno + "', '" + fromDate + "', '" + toDate + "', DATEDIFF(End_Date, Start_Date), (SELECT MAX(Pay_ID) FROM Payment));";
+					var sql_3 = "INSERT INTO Booking (User_ID, Plate_No, Start_Date, End_Date, No_of_Days, Pay_ID) VALUES ('" + uid + "', '" + plno + "', '" + fromDate + "', '" + toDate + "', DATEDIFF(End_Date, Start_Date)+1, (SELECT MAX(Pay_ID) FROM Payment));";
 					con.query(sql_3, function(err, result) {
 						if(err) throw err;
 					});
 				} else {
-					alert("Failed");
+					alert("Failed","window");
 				}
 				res.redirect('/homeUser');
 			});

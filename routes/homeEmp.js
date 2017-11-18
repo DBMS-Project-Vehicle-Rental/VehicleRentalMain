@@ -7,7 +7,7 @@ var creds = require('../app');
 var empid;
 
 router.get('/', function(req, res, next) {
-	if(req.session.emp == 1) {
+	if(req.session.emp) {
 		// Set id from cookies
 		empid = req.session.id;
 

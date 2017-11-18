@@ -9,8 +9,8 @@ html
     script(type='text/javascript', src='//cdn.jsdelivr.net/momentjs/latest/moment.min.js')
     script(type='text/javascript', src='//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js')
     link(rel='stylesheet', type='text/css', href='//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css')
-    // link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    //link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
     link(href='//fonts.googleapis.com/css?family=Josefin+Sans', rel='stylesheet')
     link(href='//fonts.googleapis.com/css?family=Raleway', rel='stylesheet')
     link(href='/stylesheets/style.css', rel='stylesheet')
@@ -53,7 +53,7 @@ html
       div
         form(method='post', action='/homeUser/getDate')
           | Date:
-          input#dates(type='text', name='daterange')
+          input#dates(type='text', name='daterange', required='')
           input(type='submit', name='okay', value='Go !')
       div
         form(method='post', action='/homeUser')
@@ -73,14 +73,14 @@ html
               li
                 div
                   label Plate number is #{data.plno}
-                  br 
+                  br
                   label Model is #{data.model}
                   br
                   label Runs on #{data.type}
                   br
                   label Color is #{data.color}
                   br
-                  input(type='radio', name='chosen', value=data.plno)
+                  input(type='radio', name='chosen', value=data.plno, required='')
           input(type='submit', name='submitting', value='Book', onclick='return empty()')
       else
         label No Vehicles Available !

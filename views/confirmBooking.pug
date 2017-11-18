@@ -25,6 +25,8 @@ html
           a(href='/previousBookings') Booking History
         li
           a(href='/settings') Settings
+        li
+          a(href='/login') Logout
     div
       h2 Booking Summary
     div
@@ -32,7 +34,7 @@ html
         label Uid : #{uid}
         br
         label Plate number is : #{data.plno}
-        br 
+        br
         label Model is : #{data.model}
         br
         label Runs on : #{data.type}
@@ -40,7 +42,7 @@ html
         label Color is : #{data.color}
         br
         label Company is : #{data.company}
-        br 
+        br
         label Seats : #{data.seats}
         br
         label Available at Garage with id : #{data.gid}
