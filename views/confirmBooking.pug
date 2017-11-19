@@ -5,64 +5,116 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
     link(rel='stylesheet', href='/stylesheets/font-awesome.css')
-    // link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    //link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
     link(href='//fonts.googleapis.com/css?family=Josefin+Sans', rel='stylesheet')
     link(href='//fonts.googleapis.com/css?family=Raleway', rel='stylesheet')
     link(href='/stylesheets/style.css', rel='stylesheet')
   body
-    nav.navbar.navbar-inverse
-      .container-fluid
-        .navbar-header
-          a.navbar-brand(href='#') RentalRides
-      div
-        label Welcome  #{uid} !
-    header
-      ul
-        li
-          a(href="/homeUser") Vehicles
-        li
-          a(href='/previousBookings') Booking History
-        li
-          a(href='/settings') Settings
-        li
-          a(href='/login') Logout
-    div
+    nav.navbar.navbar-fixed-top.topHeader
+      .container-fluid.row
+        .container(style='body: flex')
+          div
+            .navbar-header(style='padding-top: 7px')
+              a.logo(href='') RentalRides
+            .nav.navbar-nav.navbar-right.welcome
+              label Welcome  #{uid} !
+      .container-fluid.row(style='background-color: #018DB1')
+        .container(style='body: flex')
+          ul.nav.nav-pills.tabsButtons
+            li
+              a(href='/homeUser') Vehicles
+            li
+              a(href='/previousBookings') Booking History
+            li
+              a(href='/settings') Settings
+            li.navbar-right
+              a(href='/login') Logout
+    .container(style="margin-top:120px; body: flex;")
       h2 Booking Summary
-    div
-      for data in vdata
-        label Uid : #{uid}
-        br
-        label Plate number is : #{data.plno}
-        br
-        label Model is : #{data.model}
-        br
-        label Runs on : #{data.type}
-        br
-        label Color is : #{data.color}
-        br
-        label Company is : #{data.company}
-        br
-        label Seats : #{data.seats}
-        br
-        label Available at Garage with id : #{data.gid}
-        br
-        label From : #{fromDate}
-        br
-        label Till : #{toDate}
-        br
-        label Cost : #{data.cost}
-        br
-    form(method='post', action='/confirmBooking/payment')
-      label Mode of Payment:
-      input(type='radio', name='pay', value="Cash", checked="true")
-      label Cash
-      input(type='radio', name='pay', value="Credit")
-      label Credit
-      input(type='radio', name='pay', value="Wallet")
-      label Wallet
-      br
-      input#Pay(type="submit", name="Pay")
-      //div
-        a(href='/confirmBooking/payment')
-          button Pay
+    .container(style='body: flex;')
+      div(style='margin: 5%;')
+        for data in vdata
+          .row
+            .col-md-2(style='text-align: right;')
+              label User ID :
+            .col-md-10
+              |  #{uid}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Company :
+            .col-md-10
+              |  #{data.company}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Model :
+            .col-md-10
+              |  #{data.model}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Plate Number :
+            .col-md-10
+              |  #{data.plno}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Type of Vehicle :
+            .col-md-10
+              |  #{data.type}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Seats :
+            .col-md-10
+              |  #{data.seats}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Color :
+            .col-md-10
+              |  #{data.color}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Pickup from Garage :
+            .col-md-10
+              |  #{data.gid}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Booked from :
+            .col-md-10
+              |  #{fromDate}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Booked till :
+            .col-md-10
+              |  #{toDate}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Booked for :
+            .col-md-10
+              |  #{ndays} Day(s)
+          .row
+            .col-md-2(style='text-align: right;')
+              label Cost(per Day) :
+            .col-md-10
+              |  rs. #{data.cost}/-
+          .row
+            .col-md-2(style='text-align: right;')
+              h3 Final Cost :
+            .col-md-10
+              h3  Rs. #{data.cost*ndays}/-
+    .container(style='body: flex;')
+      form(method='post', action='/confirmBooking/payment')
+        h2 Please Select Mode of Payment
+        .row(style='margin: 5%')
+          .col-md-4(style='text-align: center;')
+            input.radio-inline(type='radio', name='pay', value="Cash", checked="true")
+            label Cash
+          .col-md-4(style='text-align: center;')
+            input.radio-inline(type='radio', name='pay', value="Credit" style='padding-left: 20px;')
+            label Credit/Debit Card
+          .col-md-4(style='text-align: center;')
+            input.radio-inline(type='radio', name='pay', value="Wallet" style='padding-left: 20px;')
+            label Online Wallets
+        .row
+          .col-md-6(style='text-align: center;')
+            input.btn.btn-success.longer#Pay(type="submit", name="Pay", value='Pay')
+          .col-md-6(style='text-align: center;')
+            a.btn.btn-danger.longer(href='/homeUser') Cancel

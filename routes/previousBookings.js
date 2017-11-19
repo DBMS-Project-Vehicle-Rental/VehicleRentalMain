@@ -25,7 +25,8 @@ router.get('/', function(req, res, next) {
 
 			console.log('Connected');
 
-			var sql = "SELECT p.Pay_ID as PID, Pay_Date, Amount, Method, Book_ID, Plate_No, Start_Date, End_Date, No_of_Days FROM Booking b, Payment p WHERE p.Pay_ID = b.Pay_ID AND p.User_ID = b.User_ID AND Success = 1 AND p.User_ID = '" + userid + "' order by Book_ID desc;";
+			var sql = "SELECT p.Pay_ID as PID, Pay_Date, Amount, Method, Book_ID, Plate_No, Start_Date, End_Date, No_of_Days FROM Booking b, Payment p WHERE p.Pay_ID = b.Pay_ID AND p.User_ID = b.User_ID AND p.User_ID = '" + userid + "' order by Book_ID desc;";
+			console.log(sql);
 			con.query(sql, function(err, result) {
 				if(err) throw err;
 
@@ -38,7 +39,7 @@ router.get('/', function(req, res, next) {
 					ob["method"] = result[i].Method;
 					ob["bid"] = result[i].Book_ID;
 					ob["plno"] = result[i].Plate_No;
-					ob["sdt"] = result[i].Book_Date;
+					ob["sdt"] = result[i].Start_Date;
 					ob["edt"] = result[i].End_Date;
 					ob["ndays"] = result[i].No_of_Days;
 

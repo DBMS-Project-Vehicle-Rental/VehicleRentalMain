@@ -1,0 +1,80 @@
+body {
+  font-family: 'ProductSans';
+  font-size: 1.7em;
+}
+
+.topHeader {
+  background-color: #014254;
+  /*padding: 10px 20px;*/
+  border: none;
+}
+
+.logo {
+  color: #fff;
+  font-size: 2em;
+  padding: 10px 0px;
+  font-family: 'ProductSansBold';
+}
+
+a {
+  Text-decoration: none;
+}
+
+a.logo:visited , a.logo:active, a.logo:link {
+    color: #fff;
+    Text-decoration: none;
+}
+
+a.logo:hover {
+    color: #018DB1;
+    Text-decoration: none;
+}
+
+.welcome {
+  color: #fff;
+  font-size: 1.4em;
+  font-family: 'ProductSans';
+  padding: 10px 0px;
+}
+
+.tabsButtons li {
+  background-color: #ADD8E6;
+  /*background-color:#c9ffe5;*/
+  color: #fff;
+}
+
+
+.tabsButtons li:hover {
+  background-color: #014254;
+  color: #fff;
+}
+
+/*.tabsButtons a:active {
+  background-color: #0f0f0f;
+  color: #014254;
+}*/
+
+.card {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+  margin: 5%;
+  padding: 5%;
+}
+
+.longer {
+  /*padding: auto 100px;*/
+  width: 50%;
+}
+
+.glyphicon {
+  font-size: 1.8em;
+}
+
+@font-face {
+    font-family: 'ProductSansBold';
+    src: url('../fonts/Product Sans Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'ProductSans';
+    src: url('../fonts/Product Sans Regular.ttf') format('truetype');
+}

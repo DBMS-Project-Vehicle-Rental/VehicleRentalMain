@@ -5,53 +5,87 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
     link(rel='stylesheet', href='/stylesheets/font-awesome.css')
-    // link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    //link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
     link(href='//fonts.googleapis.com/css?family=Josefin+Sans', rel='stylesheet')
     link(href='//fonts.googleapis.com/css?family=Raleway', rel='stylesheet')
     link(href='/stylesheets/style.css', rel='stylesheet')
   body
-    nav.navbar.navbar-inverse
-      .container-fluid
-        .navbar-header
-          a.navbar-brand(href='#') RentalRides
-      div
-        label Welcome  #{uid} !
-    header
-      ul
-        li
-          a(href='/homeUser') Vehicles
-        li
-          a(href='#') Booking History
-        li
-          a(href='/settings') Settings
-        li
-          a(href='/login') Logout
-    div
+    nav.navbar.navbar-fixed-top.topHeader
+      .container-fluid.row
+        .container(style='body: flex')
+          div
+            .navbar-header(style='padding-top: 7px')
+              a.logo(href='') RentalRides
+            .nav.navbar-nav.navbar-right.welcome
+              label Welcome  #{uid} !
+      .container-fluid.row(style='background-color: #018DB1')
+        .container(style='body: flex')
+          ul.nav.nav-pills.tabsButtons
+            li
+              a(href='/homeUser') Vehicles
+            li
+              a(href='/previousBookings') Booking History
+            li
+              a(href='/settings') Settings
+            li.navbar-right
+              a(href='/login') Logout
+    div.container(style="margin-top:120px; body: flex; color: #014254")
       h2 Booking History
-    div
+    div.container(style='body: flex')
       if(vdata.length)
         for data in vdata
-          label Payment id : #{data.payid}
-          br
-          label Payed on : #{data.paydt}
-          br
-          label Method : #{data.method}
-          br
-          label Amount : #{data.amt}
-          br
-          label Booking id : #{data.bid}
-          br
-          label Plate No : #{data.plno}
-          br
-          label Booked on : #{data.sdt}
-          br
-          label Booked till : #{data.edt}
-          br
-          label For a period of  : #{data.ndays} days
-          br
-          br
-          br
+          .card.row
+            .col-md-8
+              .row
+                .col-md-5(style='text-align: right;')
+                  label Payment ID :
+                .col-md-7
+                  |  #{data.payid}
+              .row
+                .col-md-5(style='text-align: right;')
+                  label Payment made on :
+                .col-md-7
+                  |  #{data.paydt}
+              .row
+                .col-md-5(style='text-align: right;')
+                  label Amount Payed :
+                .col-md-7
+                  |  Rs. #{data.amt}/-
+              .row
+                .col-md-5(style='text-align: right;')
+                  label Booking ID :
+                .col-md-7
+                  |  #{data.bid}
+              .row
+                .col-md-5(style='text-align: right;')
+                  label Plate Number :
+                .col-md-7
+                  |  #{data.plno}
+              .row
+                .col-md-5(style='text-align: right;')
+                  label Method of Payment :
+                .col-md-7
+                  |  #{data.method}
+              .row
+                .col-md-5(style='text-align: right;')
+                  label Booked Vehicel on :
+                .col-md-7
+                  |  #{data.sdt}
+              .row
+                .col-md-5(style='text-align: right;')
+                  label Booked Vehicle till :
+                .col-md-7
+                  |  #{data.edt}
+              .row
+                .col-md-5(style='text-align: right;')
+                  label Booked Vehivle for :
+                .col-md-7
+                  |  #{data.ndays}
+            .col-md-4
+              label Image coming UP !
       else
-        label No Bookings Yet !
-    div
+        div(style='text-align: center;')
+          h4 No Bookings Yet !
+          a(href='/homeUser') Click Here
+          |   to make one.

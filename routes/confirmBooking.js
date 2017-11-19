@@ -14,6 +14,12 @@ router.get('/', function(req, res, next) {
 	toDate = req.query.toDate;
 	fromDate = req.query.fromDate;
 	//var payMet = req.body.pay;
+  // var timeDifference = Math.abs(Date(toDate).getTime() - Date(fromDate).getTime());
+	// var ndays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+	dt1 = new Date(fromDate);
+	dt2 = new Date(toDate);
+ 	var ndays =  1+Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+	console.log('Number of Days = '+ndays);
 
 	var con = mysql.createConnection({
 		host: 'localhost',
@@ -49,7 +55,7 @@ router.get('/', function(req, res, next) {
 
 			vehicleData.push(elem);
 			console.log(vehicleData);
-			res.render('confirmBooking', { title: 'Confirm Booking', vdata: vehicleData, toDate: toDate, fromDate: fromDate, uid: uid });
+			res.render('confirmBooking', { title: 'Confirm Booking', vdata: vehicleData, toDate: toDate, fromDate: fromDate, uid: uid, ndays: ndays });
 		});
 	});
 });
@@ -78,6 +84,7 @@ router.post('/payment', function(req, res, next) {
 			//console.log(result);
 
 			var sql_1 = "UPDATE Payment SET Success = @poss;";
+			console.log(sql_1);
 			con.query(sql_1, function(err, result) {
 				if(err) throw err;
 			});
@@ -87,14 +94,14 @@ router.post('/payment', function(req, res, next) {
 
 				console.log(result);
 				if(result[0].poss == 1) {
-					alert("Success","window");
+					alert("Success","notify-send");
 
 					var sql_3 = "INSERT INTO Booking (User_ID, Plate_No, Start_Date, End_Date, No_of_Days, Pay_ID) VALUES ('" + uid + "', '" + plno + "', '" + fromDate + "', '" + toDate + "', DATEDIFF(End_Date, Start_Date)+1, (SELECT MAX(Pay_ID) FROM Payment));";
 					con.query(sql_3, function(err, result) {
 						if(err) throw err;
 					});
 				} else {
-					alert("Failed","window");
+					alert("Failed","notify-send");
 				}
 				res.redirect('/homeUser');
 			});

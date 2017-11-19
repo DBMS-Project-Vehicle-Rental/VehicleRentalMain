@@ -31,6 +31,7 @@ router.get('/', function(req, res, next) {
 
 				console.log(result[0].User_ID);
 				ob['uid'] = result[0].User_ID;
+				ob['name'] = result[0].Name;
 				ob['email'] = result[0].Email;
 				ob['pno'] = result[0].Phone_No;
 				ob['address'] = result[0].Address;

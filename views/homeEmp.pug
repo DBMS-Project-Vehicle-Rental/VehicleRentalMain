@@ -7,46 +7,73 @@ html
     link(rel='stylesheet', href='/stylesheets/font-awesome.css')
     script(type='text/javascript', src='//cdn.jsdelivr.net/jquery/1/jquery.min.js')
     script(type='text/javascript', src='//cdn.jsdelivr.net/momentjs/latest/moment.min.js')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    //link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
     link(href='//fonts.googleapis.com/css?family=Josefin+Sans', rel='stylesheet')
     link(href='//fonts.googleapis.com/css?family=Raleway', rel='stylesheet')
     link(href='/stylesheets/style.css', rel='stylesheet')
   body
-    nav.navbar.navbar-inverse
-      .container-fluid
-        .navbar-header
-          a.navbar-brand(href='#') RentalRides
-      div
-        label Welcome  #{eid} !
-    header
-      ul
-        li
-          a(href='') Garage Details
-        li
-          a(href='/settingsEmp') Settings
-        li
-          a(href='/login') Logout
-    div Info
-    div
+    nav.navbar.navbar-fixed-top.topHeader
+      .container-fluid.row
+        .container(style='body: flex')
+          div
+            .navbar-header(style='padding-top: 7px')
+              a.logo(href='') RentalRides
+            .nav.navbar-nav.navbar-right.welcome
+              label Welcome  #{eid} !
+      .container-fluid.row(style='background-color: #018DB1')
+        .container(style='body: flex')
+          ul.nav.nav-pills.tabsButtons
+            li
+              a(href='/homeEmp') Garage Details
+            li
+              a(href='/settingsEmp') Settings
+            li.navbar-right
+              a(href='/login') Logout
+    div.container(style="margin-top:120px; body: flex")
+      h2 Employee Garage Details
+    div.container(style="body: flex;")
       if (data.length)
-        ul
-          li
-            div
-              label Employee Name : #{data[0].ename}
-              br
-              label Garage ID : #{data[0].gid}
-              br
-              label Garage Location : #{data[0].gloc}
-              br
-              label Vehicles at Garage #{data[0].gid}
-              br
-        table(border='1')
-          tr
-            th Vehicle Model Name
-            th Vehicle Plate No.
-          for d in vdata
-            tr
-              td #{d.modname}
-              td #{d.plno}
+        div(style='margin: 5%')
+          .row
+            .col-md-2(style='text-align: right;')
+              label Employee Name :
+            .col-md-10
+              |  #{data[0].ename}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Employee ID :
+            .col-md-10
+              |  #{data[0].empid}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Garage ID :
+            .col-md-10
+              |  #{data[0].gid}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Garage Name :
+            .col-md-10
+              |  #{data[0].gname}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Garage location :
+            .col-md-10
+              |  #{data[0].gloc}
+        .row
+          .col-md-2
+          .col-md-8
+            h4 Vehicles at your Garage
+            br
+            table.table.table-striped.table-condensed(border='1')
+              tr
+                th Vehicle Model Name
+                th Vehicle Plate No.
+              for d in vdata
+                tr
+                  td #{d.modname}
+                  td #{d.plno}
+          .col-md-2
       else
-        label No Details Availabe !
+        div(style='padding :40px 420px')
+          h4(style='padding-left :6px') No Employee Details !

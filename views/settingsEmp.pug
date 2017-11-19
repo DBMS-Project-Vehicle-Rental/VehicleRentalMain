@@ -8,57 +8,121 @@ html
     script(type='text/javascript', src='//cdn.jsdelivr.net/jquery/1/jquery.min.js')
     script(type='text/javascript', src='//cdn.jsdelivr.net/momentjs/latest/moment.min.js')
     link(rel='stylesheet', type='text/css', href='//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    //link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
     link(href='//fonts.googleapis.com/css?family=Josefin+Sans', rel='stylesheet')
     link(href='//fonts.googleapis.com/css?family=Raleway', rel='stylesheet')
     link(href='/stylesheets/style.css', rel='stylesheet')
   body
-    nav.navbar.navbar-inverse
-      .container-fluid
-        .navbar-header
-          a.navbar-brand(href='#') RentalRides
-      div
-        label Welcome  #{eid} !
-    header
-      ul
-        li
-          a(href='/homeEmp') Garage Details
-        li
-          a(href='/settingsEmp') Settings
-        li
-          a(href='/login') Logout
-    div
+    nav.navbar.navbar-fixed-top.topHeader
+      .container-fluid.row
+        .container(style='body: flex')
+          div
+            .navbar-header(style='padding-top: 7px')
+              a.logo(href='') RentalRides
+            .nav.navbar-nav.navbar-right.welcome
+              label Welcome  #{eid} !
+      .container-fluid.row(style='background-color: #018DB1')
+        .container(style='body: flex')
+          ul.nav.nav-pills.tabsButtons
+            li
+              a(href='/homeEmp') Garage Details
+            li
+              a(href='/settingsEmp') Settings
+            li.navbar-right
+              a(href='/login') Logout
+    .container(style="margin-top:120px; body: flex;")
+      h2 Your details
+    .container(style="body: flex;")
       if (data.length)
-        label Employee ID: #{data[0].uid}
-        br
-        label Email ID: #{data[0].email}
-        br
-        label Phone No.: #{data[0].pno}
-        br
-        label Address: #{data[0].address}
-        br
-    br
-    div
+        div(style='margin: 5%')
+          .row
+            .col-md-2(style='text-align: right;')
+              label Employee ID :
+            .col-md-10
+              |  #{data[0].uid}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Name :
+            .col-md-10
+              |  #{data[0].name}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Email ID :
+            .col-md-10
+              |  #{data[0].email}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Phone Number :
+            .col-md-10
+              |  #{data[0].pno}
+          .row
+            .col-md-2(style='text-align: right;')
+              label Address :
+            .col-md-10
+              |  #{data[0].address}
+    .container(style="body: flex;")
+      h2 Edit your details
+    .container(style="body: flex;")
       if (valid == 3)
         form(method='post', action='/settingsEmp/change')
-          input(type="submit", name="chgPass", value="Update")
+          .row
+          .row(style='margin: 5%')
+            .col-md-2(style='text-align: right;')
+              .glyphicon.glyphicon-pencil
+            .col-md-10
+              input.btn.btn-primary(type="submit", name="chgPass", value="Update Password", style="width: 200px")
       if (valid == 4)
         form(method='post', action='/settingsEmp/changePass')
-          label Old Password:
-          input(type="password", name="oldPass", required='', autofocus='')
-          br
-          label New Password:
-          input(type="password", name="newPass", required='')
-          br
-          input(type="submit", name="chgPass", value="Change Password")
-    div
+          div(style='margin: 5%;')
+            .row
+              .col-md-4(style='text-align: right; margin-top: 1.2%')
+                label Old Password :
+              .col-md-8
+                input(type="password", name="oldPass", required='', autofocus='' style="margin-top: 1%")
+            .row
+              .col-md-4(style='text-align: right; margin-top: 1.2%;')
+                label New Password :
+              .col-md-8
+                input(type="password", name="newPass", required='',  style='margin-top: 1.2%')
+          .row(style='margin: 2%;')
+            .col-md-3
+            .col-md-5
+              input.btn.btn-warning.longer(type="submit", name="chgPass", value="Change Password")
+            .col-md-4
+    .container(style="body: flex;")
       if (valid == 0)
-        label Password changed successfully !!!
+        div(style='margin: 5%;')
+          .row
+            .col-md-3
+            .col-md-6.alert.alert-success(style='text-align: center;')
+              strong Success !
+              |  Changed Password Successfully.
+            .col-md-3
       else if (valid == 1)
-        label Old password is wrong.
+        div(style='margin: 5%;')
+          .row
+            .col-md-3
+            .col-md-6.alert.alert-danger(style='text-align: center;')
+              strong Sorry !
+              |  Old Password is wrong.
+            .col-md-3
       else if (valid == 2)
-        label Old password same as new password.
-      br
-      if (valid == 1 || valid == 2)
-        a(href='/settingsEmp')
-          button(value='Retry') Retry
+        div(style='margin: 5%;')
+          .row
+            .col-md-3
+            .col-md-5.alert.alert-info(style='text-align: center;')
+              strong Sorry !
+              |  New Password is same as old password.
+            .col-md-4
+      if (valid == 1 || valid == 2 || valid == 0)
+      div
+        .row
+          .col-md-3
+          .col-md-4(style='text-align: right; padding-right: 60px')
+            a(href='/settingsEmp')
+              if (valid == 1 || valid == 2)
+                button.btn.btn-info.longer(value='Retry') Retry
+              else if (valid == 0)
+                button.btn.btn-info.longer(value='Done') Done
+          .col-md-5
