@@ -39,7 +39,8 @@ router.get('/', function(req, res, next) {
 				ob['wallet'] = result[0].Wallet;
 				balance = ob['wallet'];
 				d.push(ob);
-				res.render('settings', {title: 'User\'s Settings', uid: id, valid: 3, data: d});
+				var imgSrc = 'http://localhost:3000/images/'+id+'.jpg';
+				res.render('settings', {title: 'User\'s Settings', uid: id, valid: 3, data: d,imgSrc: imgSrc});
 				console.log(ob);
 				console.log(d);
 			});

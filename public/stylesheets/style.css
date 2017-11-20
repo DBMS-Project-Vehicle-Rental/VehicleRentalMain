@@ -20,7 +20,7 @@ a {
   Text-decoration: none;
 }
 
-a.logo:visited , a.logo:active, a.logo:link {
+/*a.logo:visited , a.logo:active, a.logo:link {
     color: #fff;
     Text-decoration: none;
 }
@@ -28,9 +28,22 @@ a.logo:visited , a.logo:active, a.logo:link {
 a.logo:hover {
     color: #018DB1;
     Text-decoration: none;
+}*/
+
+.logo {
+   margin-bottom: 10px;
+   width: 500px;
+   height:100px;
+   display:block;
+   background:transparent url('http://localhost:3000/images/logoInvert.png') center top no-repeat;
+}
+
+.logo:hover {
+   background-image: url('http://localhost:3000/images/logo.png');
 }
 
 .welcome {
+  margin-top: 2.5%;
   color: #fff;
   font-size: 1.4em;
   font-family: 'ProductSans';
@@ -77,4 +90,90 @@ a.logo:hover {
 @font-face {
     font-family: 'ProductSans';
     src: url('../fonts/Product Sans Regular.ttf') format('truetype');
+}
+
+
+
+
+
+/*From Template*/
+
+.focus-grid input {
+	text-decoration:none;
+}
+.focus-grid {
+    margin-top: 30px;
+}
+
+.focus-layout{
+	background:#FBFBFB;
+	transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+.focus-layout{
+	margin: 5px;
+    padding: 20px 0;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+	text-align: center;
+}
+.focus-layout:hover {
+    background-color: #01a185;
+    transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+
+.focus-image{
+  text-align: center;
+  transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+.focus-image i {
+    font-size: 40px;
+    color: #fff;
+    background: #dd0908;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    line-height: 95px;
+    transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+.focus-layout:hover div.focus-image i{
+	background:#FBFBFB;
+	color:#000;
+    transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+
+.focus-image i.fa-car {
+	background:#3fb7d2;
+}
+.focus-image i.fa-motorcycle {
+	background:#15c01c;
+}
+
+.focus-layout:hover div.focus-image i.car{
+}
+i.bike {
+}
+.focus-layout:hover div.focus-image i.bike{
 }

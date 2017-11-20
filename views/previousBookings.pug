@@ -16,7 +16,7 @@ html
         .container(style='body: flex')
           div
             .navbar-header(style='padding-top: 7px')
-              a.logo(href='') RentalRides
+              a.logo(href='')
             .nav.navbar-nav.navbar-right.welcome
               label.text-capitalize Welcome  #{uid} !
       .container-fluid.row(style='background-color: #018DB1')
@@ -30,9 +30,9 @@ html
               a(href='/settings') Settings
             li.navbar-right
               a(href='/login') Logout
-    div.container(style="margin-top:120px; body: flex; color: #014254")
+    .container(style="margin-top:200px; body: flex;")
       h2 Booking History
-    div.container(style='body: flex')
+    .container(style='body: flex')
       if(vdata.length)
         for data in vdata
           .card.row
@@ -83,9 +83,9 @@ html
                 .col-md-7
                   |  #{data.ndays}
             .col-md-4
-              label Image coming UP !
+              .glyphicon.glyphicon-ok(style='font-size: 4em; padding: 70px; color: green;')
       else
-        div(style='text-align: center;')
+        div(style='text-align: center; margin: 5%;')
           h4 No Bookings Yet !
           a(href='/homeUser') Click Here
           |   to make one.

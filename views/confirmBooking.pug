@@ -16,7 +16,7 @@ html
         .container(style='body: flex')
           div
             .navbar-header(style='padding-top: 7px')
-              a.logo(href='') RentalRides
+              a.logo(href='')
             .nav.navbar-nav.navbar-right.welcome
               label.text-capitalize Welcome  #{uid} !
       .container-fluid.row(style='background-color: #018DB1')
@@ -30,7 +30,7 @@ html
               a(href='/settings') Settings
             li.navbar-right
               a(href='/login') Logout
-    .container(style="margin-top:120px; body: flex;")
+    .container(style="margin-top:200px; body: flex;")
       h2 Booking Summary
     .container(style='body: flex;')
       div(style='margin: 5%;')
@@ -100,10 +100,10 @@ html
               h3 Final Cost :
             .col-md-10
               h3  Rs. #{data.cost*ndays}/-
-    .container(style='body: flex;')
+    .container(style='body: flex; margin-bottom: 10%; margin-top: 3%')
       form(method='post', action='/confirmBooking/payment')
         h2 Please Select Mode of Payment
-        .row(style='margin: 5%')
+        .row(style='margin: 7%')
           .col-md-4(style='text-align: center;')
             input.radio-inline(type='radio', name='pay', value="Cash", checked="true")
             label Cash

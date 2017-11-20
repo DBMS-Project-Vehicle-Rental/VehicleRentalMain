@@ -25,7 +25,7 @@ router.post('/getDate', function(req, res, next) {
 	var dates = String(req.body.daterange).split(" ");
 	fromDate = dates[0];
 	toDate = dates[2];
-	res.redirect('/homeUser');
+	res.redirect('/homeUser#typeSection');
 });
 
 router.post('/', function(req, res, next) {
@@ -41,7 +41,7 @@ router.post('/', function(req, res, next) {
 		console.log('Connected to PROJECT database');
 		var toSend;
 
-		if(req.body.car=='car') {
+		if(req.body.car=='Cars') {
 			toSend = 'car';
 		} else {
 			toSend = 'bike';

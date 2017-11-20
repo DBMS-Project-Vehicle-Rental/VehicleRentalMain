@@ -18,7 +18,7 @@ html
         .container(style='body: flex')
           div
             .navbar-header(style='padding-top: 7px')
-              a.logo(href='') RentalRides
+              a.logo(href='')
             .nav.navbar-nav.navbar-right.welcome
               label.text-capitalize Welcome  #{eid} !
       .container-fluid.row(style='background-color: #018DB1')
@@ -30,7 +30,7 @@ html
               a(href='/settingsEmp') Settings
             li.navbar-right
               a(href='/login') Logout
-    div.container(style="margin-top:120px; body: flex")
+    div.container(style="margin-top:200px; body: flex")
       h2 Employee Garage Details
     div.container(style="body: flex;")
       if (data.length)

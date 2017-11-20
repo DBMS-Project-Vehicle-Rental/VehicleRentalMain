@@ -19,7 +19,7 @@ html
         .container(style='body: flex')
           div
             .navbar-header(style='padding-top: 7px')
-              a.logo(href='') RentalRides
+              a.logo(href='')
             .nav.navbar-nav.navbar-right.welcome
               label.text-capitalize Welcome  #{uid} !
       .container-fluid.row(style='background-color: #018DB1')
@@ -33,41 +33,45 @@ html
               a(href='/settings') Settings
             li.navbar-right
               a(href='/login') Logout
-    .container(style="margin-top:120px; body: flex;")
+    .container(style="margin-top: 200px; body: flex;")
       h2 Your details
     .container(style="body: flex;")
       if (data.length)
         div(style='margin: 5%')
           .row
-            .col-md-2(style='text-align: right;')
-              label User ID :
-            .col-md-10
-              |  #{data[0].uid}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Name :
-            .col-md-10
-              |  #{data[0].name}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Email ID :
-            .col-md-10
-              |  #{data[0].email}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Phone Number :
-            .col-md-10
-              |  #{data[0].pno}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Address :
-            .col-md-10
-              |  #{data[0].address}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Wallet Balance :
-            .col-md-10
-              |  #{data[0].wallet}
+            .col-md-8
+              .row
+                .col-md-3(style='text-align: right;')
+                  label User ID :
+                .col-md-3
+                  |  #{data[0].uid}
+              .row
+                .col-md-3(style='text-align: right;')
+                  label Name :
+                .col-md-3
+                  |  #{data[0].name}
+              .row
+                .col-md-3(style='text-align: right;')
+                  label Email ID :
+                .col-md-3
+                  |  #{data[0].email}
+              .row
+                .col-md-3(style='text-align: right;')
+                  label Phone Number :
+                .col-md-3
+                  |  #{data[0].pno}
+              .row
+                .col-md-3(style='text-align: right;')
+                  label Address :
+                .col-md-3
+                  |  #{data[0].address}
+              .row
+                .col-md-3(style='text-align: right;')
+                  label Wallet Balance :
+                .col-md-3
+                  |  #{data[0].wallet}
+            .col-md-2
+              img(src=imgSrc, style='height: 175px; width: 175px; border-radius: 50%;')
     .container(style="body: flex;")
       h2 Edit your details
     .container(style="body: flex;")
