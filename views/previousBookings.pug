@@ -30,7 +30,7 @@ html
               a(href='/settings') Settings
             li.navbar-right
               a(href='/login') Logout
-    .container(style="margin-top:200px; body: flex;")
+    .container(style="margin-top:160px; body: flex;")
       h2 Booking History
     .container(style='body: flex')
       if(vdata.length)
@@ -81,7 +81,7 @@ html
                 .col-md-5(style='text-align: right;')
                   label Booked Vehivle for :
                 .col-md-7
-                  |  #{data.ndays}
+                  |  #{data.ndays} day(s)
             .col-md-4
               .glyphicon.glyphicon-ok(style='font-size: 4em; padding: 70px; color: green;')
       else

@@ -9,14 +9,14 @@ body {
   border: none;
 }
 
-.logo {
+/*.logo {
   color: #fff;
   font-size: 2em;
   padding: 10px 0px;
   font-family: 'ProductSansBold';
-}
+}*/
 
-a {
+a:active,a:visited,a:link, a:hover {
   Text-decoration: none;
 }
 
@@ -32,8 +32,9 @@ a.logo:hover {
 
 .logo {
    margin-bottom: 10px;
-   width: 500px;
-   height:100px;
+   width: 350px;
+   height:75px;
+
    display:block;
    background:transparent url('http://localhost:3000/images/logoInvert.png') center top no-repeat;
 }
@@ -80,6 +81,10 @@ a.logo:hover {
 
 .glyphicon {
   font-size: 1.8em;
+}
+
+.choice {
+  transform: scale(2);
 }
 
 @font-face {

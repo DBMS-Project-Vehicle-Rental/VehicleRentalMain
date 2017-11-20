@@ -23,15 +23,6 @@ html
       }
       });
       });
-    script(type='text/javascript').
-      function empty() {
-      var x;
-      x = document.getElementById("dates").value;
-      if (x == null) {
-      alert("Enter Valid Dates !");
-      return false;
-      };
-      }
   body
     nav.navbar.navbar-fixed-top.topHeader
       .container-fluid.row
@@ -52,34 +43,36 @@ html
               a(href='/settings') Settings
             li.navbar-right
               a(href='/login') Logout
-    .container(style="margin-top: 200px; body: flex;")
+    .container(style="margin-top: 160px; body: flex;")
       h2 Book a Vehicle
       //h4.text-info Pick a Date and then the type of Vehicle you are looking for.
-    .container(style="body: flex; height: 500px; background-color: #ADD8E6; padding-top: 40px; padding-left: 50px; margin-top: 60px; border-radius: 1%; margin-bottom: 100px")
-      h3 To Book a Vehicle of your choice, please follow the below given steps
-      .row(style='margin-top: 20px; margin-left: 50px')
-        .col-md-1(style='text-align: right; padding: 17px')
-          .glyphicon.glyphicon-check
-        .col-md-11
-         h3 Step 1 :
-         |  Pick the dates for which you want the vehicle.
-      .row(style='margin-top: 20px; margin-left: 50px')
-        .col-md-1(style='text-align: right; padding: 17px')
-          .glyphicon.glyphicon-check
-        .col-md-11
-          h3 Step 2 :
-          |  Choose the type of Vehicle you would prefer.
-          .row(style='margin-top: 20px; margin-left: 20px')
-            h4 (a) Car
-            h4 (b) Bike
-      .row(style='margin-top: 40px; text-align: center;')
-        .col-md-3
-        .col-md-6
-          a(href="#dateSection")
-            .btn.btn-success.btn-lg.btn-block Start
-    .container#dateSection(style="body: flex; height: 800px;")
-      .row(style='margin-top: 20%')
-        form.card(method='post', action='/homeUser/getDate')
+    .container(style="body: flex;")
+      .card(style='background-color: #ADD8E6;')
+        h3 To Book a Vehicle of your choice, please follow the below given steps
+        .row(style='margin-top: 20px; margin-left: 50px')
+          .col-md-1(style='text-align: right; padding: 17px')
+            .glyphicon.glyphicon-check
+          .col-md-11
+           h3 Step 1 :
+           |  Pick the dates for which you want the vehicle.
+        .row(style='margin-top: 20px; margin-left: 50px')
+          .col-md-1(style='text-align: right; padding: 17px')
+            .glyphicon.glyphicon-check
+          .col-md-11
+            h3 Step 2 :
+            |  Choose the type of Vehicle you would prefer.
+            .row(style='margin-top: 20px; margin-left: 20px')
+              h4 (a) Car
+              h4 (b) Bike
+        .row(style='margin-top: 40px; text-align: center;')
+          .col-md-3
+          .col-md-6
+            a(href="#dateSection")
+              .btn.btn-success.btn-lg.btn-block Start
+    .container#dateSection
+    .container(style="body: flex; height: 700px; margin-top:10%")
+      .row(style='')
+        form.card(method='post', action='/homeUser/getDate', style='background-color: #c7ea46')
           h2 Pick your Dates
           h3(style='margin: 5%;') Please select the two dates - The Start date and End date.
           .row(style='margin: 10%;')
@@ -87,15 +80,16 @@ html
             .col-md-1(style='text-align: right;')
               .glyphicon.glyphicon-calendar(style='font-size: 3em;')
             .col-md-8
-              input#dates(type='text', name='daterange', required='', style='margin-top: 7px;')
+              input(type='text', name='daterange', required='', style='margin-top: 7px;')
           .row(style='margin-top: 40px; text-align: center;')
             .col-md-3
             .col-md-6
               a(href="#typeSection")
-                input.btn.btn-success.btn-lg.btn-block(type='submit', name='okay', value='Next')
-    .container#typeSection(style="body: flex; height: 800px;")
-      .row(style='margin-top: 20%')
-        form.card(method='post', action='/homeUser', style='padding-bottom: 80px;')
+                input.btn.btn-primary.btn-lg.btn-block(type='submit', name='okay', value='Next')
+    .container#typeSection
+    .container(style="body: flex; height: 700px; margin-top: 10%")
+      .row(style='')
+        form.card(method='post', action='/homeUser', style='padding-bottom: 80px; background-color: #c7ea46')
           h2 Car or Bike ?
           h3(style='margin: 4%;') What would you like to book today ?
           .row
@@ -112,13 +106,13 @@ html
                   .focus-image
                     i.fa.fa-motorcycle
                     input.btn.btn-warning.btn-lg(type='submit', name='bike', value='Bikes', style='margin-top: 30px')
-    .container(style='body: flex; margin-top: 20%;')
+    .container(style='body: flex; margin-top: 4%;')
       h2 Available Cars and Bikes
     .container(style='body: flex; margin-bottom: 10%')
       if (vdata.length)
-        form(method='post', action='/homeUser/bookingVehicle')
+        form(method='post', action='/homeUser/bookingVehicle', style='padding-left: 5%')
           for data in vdata
-            .card(style='font-size: 0.8em')
+            .card(style='font-size: 0.8em; padding: 2%; float: left; padding-right: 3%; margin: 3%')
               .row
                 .col-md-7(style='text-align: right;')
                   label Plate Number :
@@ -153,13 +147,14 @@ html
                 .col-md-7(style='text-align: right;')
                   h4 Price :
                 .col-md-5
-                  h5  Rs. #{data.cost}/-
+                  h5  Rs.#{data.cost}/Day
               .row(style='padding-top: 20px;')
                 .col-md-2
-                .col-md-1(style='padding-top: 5px;')
-                  input(type='radio', name='chosen', value=data.plno, required='')
+                .col-md-1(style='padding-top: 20px;')
+                  input.choice(type='radio', name='chosen', value=data.plno, required='')
                 .col-md-5
-                  h5 Choose
+                  h3 Choose
+          .container
           .row(style='margin-top: 40px; text-align: center;')
             .col-md-3
             .col-md-6

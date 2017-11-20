@@ -30,7 +30,7 @@ html
               a(href='/settings') Settings
             li.navbar-right
               a(href='/login') Logout
-    .container(style="margin-top:200px; body: flex;")
+    .container(style="margin-top:160px; body: flex;")
       h2 Booking Summary
     .container(style='body: flex;')
       div(style='margin: 5%;')
@@ -100,20 +100,20 @@ html
               h3 Final Cost :
             .col-md-10
               h3  Rs. #{data.cost*ndays}/-
-    .container(style='body: flex; margin-bottom: 10%; margin-top: 3%')
+    .container(style='body: flex; margin-bottom: 10%; margin-top: 5%')
       form(method='post', action='/confirmBooking/payment')
         h2 Please Select Mode of Payment
         .row(style='margin: 7%')
           .col-md-4(style='text-align: center;')
-            input.radio-inline(type='radio', name='pay', value="Cash", checked="true")
-            label Cash
+            input.radio-inline.choice(type='radio', name='pay', value="Cash", checked="true")
+            h3(style='padding: 5px;') Cash
           .col-md-4(style='text-align: center;')
-            input.radio-inline(type='radio', name='pay', value="Credit" style='padding-left: 20px;')
-            label Credit/Debit Card
+            input.radio-inline.choice(type='radio', name='pay', value="Credit" style='padding-left: 20px;')
+            h3(style='padding: 5px;') Credit/Debit Card
           .col-md-4(style='text-align: center;')
-            input.radio-inline(type='radio', name='pay', value="Wallet" style='padding-left: 20px;')
-            label Online Wallets
-        .row
+            input.radio-inline.choice(type='radio', name='pay', value="Wallet" style='padding-left: 20px;')
+            h3(style='padding: 5px;') Online Wallets
+        .row(style='margin-left: 5%')
           .col-md-6(style='text-align: center;')
             input.btn.btn-success.longer#Pay(type="submit", name="Pay", value='Pay')
           .col-md-6(style='text-align: center;')

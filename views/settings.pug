@@ -33,7 +33,7 @@ html
               a(href='/settings') Settings
             li.navbar-right
               a(href='/login') Logout
-    .container(style="margin-top: 200px; body: flex;")
+    .container(style="margin-top: 160px; body: flex;")
       h2 Your details
     .container(style="body: flex;")
       if (data.length)
@@ -120,7 +120,7 @@ html
                 label Add Balance of :
               .col-md-8
                 | Rs.
-                input(type="text", name="newBal", required='', autofocus='', style='margin-top: 1.2%')
+                input(type="number", name="newBal", required='', autofocus='', min='0', style='margin-top: 1.2%')
           .row(style='margin: 2%;')
             .col-md-3
             .col-md-5
