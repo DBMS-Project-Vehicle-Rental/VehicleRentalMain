@@ -1,0 +1,119 @@
+doctype html
+html
+  head
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+    link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    //link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+    link(href='/stylesheets/stylelogin.css', rel='stylesheet')
+  body
+    .w3ls-main
+      .container
+        .wthree-form
+          .agileits-2
+            h2 Sign Up
+          form(action='/signup', method='post')
+            .row(style='padding-bottom: 30px')
+              .col-md-4
+              .col-md-2
+                input.btn.btn-primary.btn-block(type='submit', name='User', value='User')
+              .col-md-2
+                input.btn.btn-primary.btn-block(type='submit', name='Employee', value='Employee')
+              .col-md-4
+          if (value == 0)
+            .w3l
+              label Please Choose a Category !
+          else if (value == 2)
+            form.form-horizontal.formText(action='/signup/submitUser', method='post')
+              div.form-group
+                label.control-label.col-md-3.w3l Name* :
+                .col-md-7
+                  input.form-control(type='text', placeholder='Enter Name', name='nm',required='',autofocus='')
+              div.form-group
+                label.control-label.col-md-3.w3l(for='email') Email* :
+                .col-md-7
+                  input.form-control(type='email', placeholder='Enter Email ID', name='email',required='')
+              div.form-group
+                label.control-label.col-md-3.w3l Phone Number* :
+                .col-md-7
+                  input.form-control(type='number', placeholder='Enter Phone Number', name='phno',required='', min=0)
+              div.form-group
+                label.control-label.col-md-3.w3l Address* :
+                .col-md-7
+                  input.form-control(type='text', placeholder='Enter Address', name='addr',required='')
+              div.form-group
+                label.control-label.col-md-3.w3l(for='email') User ID* :
+                .col-md-7
+                  input.form-control(type='text', placeholder='Enter User ID', name='usrid',required='')
+              div.form-group
+                label.control-label.col-md-3.w3l(for='password') Password* :
+                .col-md-7
+                  input.form-control(type='password', placeholder='Enter Passowrd', name='pwd',required='')
+              div.form-group
+                label.control-label.col-md-3.w3l Wallet* :
+                .col-md-7
+                  input.form-control(type='number', placeholder='Enter Wallet Amount', name='wallet',required='', min=0)
+              div.w3l.form-group
+                .row
+                  .col-md-4
+                  .col-md-4
+                    label Upload Photo :
+                .row
+                  .col-md-3
+                  .col-md-7
+                    input.form-control(type='file', name='photo', accept="image/*", style='padding-bottom: 40px; background-color: #ADD8E6')
+              .form-group
+                .col-md-2
+                .col-md-8
+                  input.btn.btn-block.btn-success.btn-lg(type='submit', name='signup', value='Done')
+                .col-md-2
+          else
+            form.form-horizontal.formText(action='/signup/submitEmployee', method='post')
+              div.form-group
+                label.control-label.col-md-3.w3l Employee Name* :
+                .col-md-7
+                  input.form-control(type='text', placeholder='Enter Name', name='enm',required='',autofocus='')
+              div.form-group
+                label.control-label.col-md-3.w3l(for='email') Email* :
+                .col-md-7
+                  input.form-control(type='email', placeholder='Enter Email ID', name='email',required='')
+              div.form-group
+                label.control-label.col-md-3.w3l Phone Number* :
+                .col-md-7
+                  input.form-control(type='number', placeholder='Enter Phone Number', name='phno',required='', min=0)
+              div.form-group
+                label.control-label.col-md-3.w3l Address* :
+                .col-md-7
+                  input.form-control(type='text', placeholder='Enter Address', name='addr',required='')
+              div.form-group
+                label.control-label.col-md-3.w3l(for='email') Employee ID* :
+                .col-md-7
+                  input.form-control(type='text', placeholder='Enter Employee ID', name='empid',required='')
+              div.form-group
+                label.control-label.col-md-3.w3l(for='password') Password* :
+                .col-md-7
+                  input.form-control(type='password', placeholder='Enter Passowrd', name='pwd',required='')
+              div.form-group
+                label.control-label.col-md-3.w3l Garage ID* :
+                .col-md-7
+                  //input.form-control(type='text', placeholder='Enter Garage ID', name='gid',required='')
+                  select(name='gid')
+                      option(value=gdata1) #{gdata1}
+                      option(value=gdata2) #{gdata2}
+              div.w3l.form-group
+                .row
+                  .col-md-4
+                  .col-md-4
+                    label Upload Photo :
+                .row
+                  .col-md-3
+                  .col-md-7
+                    input.form-control(type='file', name='photo', accept="image/*", style='padding-bottom: 40px; background-color: #ADD8E6')
+              .form-group
+                .col-md-2
+                .col-md-8
+                  input.btn.btn-block.btn-success.btn-lg(type='submit', name='signup', value='Done')
+                .col-md-2

@@ -37,7 +37,9 @@ router.get('/', function(req, res, next) {
 				ob['address'] = result[0].Address;
 
 				d.push(ob);
-				res.render('settingsEmp', {title: 'Employee Settings', eid: id, valid: 3, data: d});
+				//var imgSrc = 'http://localhost:3000/images/'+id+'.jpg';
+				var imgSrc = 'http://localhost:3000/images/noImage.jpg';
+				res.render('settingsEmp', {title: 'Employee Settings', eid: id, valid: 3, data: d,imgSrc: imgSrc});
 				console.log(ob);
 				console.log(d);
 			});

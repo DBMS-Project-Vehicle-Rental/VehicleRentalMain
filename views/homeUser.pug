@@ -47,7 +47,7 @@ html
       h2 Book a Vehicle
       //h4.text-info Pick a Date and then the type of Vehicle you are looking for.
     .container(style="body: flex;")
-      .card(style='background-color: #ADD8E6;')
+      .card.card-dark(style='background-color: #ADD8E6;')
         h3 To Book a Vehicle of your choice, please follow the below given steps
         .row(style='margin-top: 20px; margin-left: 50px')
           .col-md-1(style='text-align: right; padding: 17px')
@@ -72,7 +72,7 @@ html
     .container#dateSection
     .container(style="body: flex; height: 700px; margin-top:10%")
       .row(style='')
-        form.card(method='post', action='/homeUser/getDate', style='background-color: #c7ea46')
+        form.card.card-dark(method='post', action='/homeUser/getDate', style='background-color: #c7ea46')
           h2 Pick your Dates
           h3(style='margin: 5%;') Please select the two dates - The Start date and End date.
           .row(style='margin: 10%;')
@@ -89,7 +89,7 @@ html
     .container#typeSection
     .container(style="body: flex; height: 700px; margin-top: 10%")
       .row(style='')
-        form.card(method='post', action='/homeUser', style='padding-bottom: 80px; background-color: #c7ea46')
+        form.card.card-dark(method='post', action='/homeUser', style='padding-bottom: 80px; background-color: #c7ea46')
           h2 Car or Bike ?
           h3(style='margin: 4%;') What would you like to book today ?
           .row
@@ -112,7 +112,7 @@ html
       if (vdata.length)
         form(method='post', action='/homeUser/bookingVehicle', style='padding-left: 5%')
           for data in vdata
-            .card(style='font-size: 0.8em; padding: 2%; float: left; padding-right: 3%; margin: 3%')
+            .card.card-dark(style='font-size: 0.8em; padding: 2%; float: left; padding-right: 3%; margin: 3%; border-width: 5px; border-style: dashed; height: 320px')
               .row
                 .col-md-7(style='text-align: right;')
                   label Plate Number :

@@ -37,40 +37,40 @@ html
       h2 Your details
     .container(style="body: flex;")
       if (data.length)
-        div(style='margin: 5%')
+        div.card.card-dark(style='margin: 5%; padding: 0%;')
           .row
-            .col-md-8
+            .col-md-7(style='padding:4%; text-align: center;')
               .row
-                .col-md-3(style='text-align: right;')
+                .col-md-5(style='text-align: right;')
                   label User ID :
-                .col-md-3
+                .col-md-7(style='text-align: left;')
                   |  #{data[0].uid}
               .row
-                .col-md-3(style='text-align: right;')
+                .col-md-5(style='text-align: right;')
                   label Name :
-                .col-md-3
+                .col-md-7(style='text-align: left;')
                   |  #{data[0].name}
               .row
-                .col-md-3(style='text-align: right;')
+                .col-md-5(style='text-align: right;')
                   label Email ID :
-                .col-md-3
+                .col-md-7(style='text-align: left;')
                   |  #{data[0].email}
               .row
-                .col-md-3(style='text-align: right;')
+                .col-md-5(style='text-align: right;')
                   label Phone Number :
-                .col-md-3
+                .col-md-7(style='text-align: left;')
                   |  #{data[0].pno}
               .row
-                .col-md-3(style='text-align: right;')
+                .col-md-5(style='text-align: right;')
                   label Address :
-                .col-md-3
+                .col-md-7(style='text-align: left;')
                   |  #{data[0].address}
               .row
-                .col-md-3(style='text-align: right;')
+                .col-md-5(style='text-align: right;')
                   label Wallet Balance :
-                .col-md-3
+                .col-md-7(style='text-align: left;')
                   |  #{data[0].wallet}
-            .col-md-2
+            .col-md-5(style='text-align: center; padding: 4%')
               img(src=imgSrc, style='height: 175px; width: 175px; border-radius: 50%;')
     .container(style="body: flex;")
       h2 Edit your details
