@@ -9,8 +9,8 @@ const fileUpload = require('express-fileupload');
 
 
 var creds = [{
-	username: 'root',
-	password: 'p@t@n@hi'
+	username: 'devansh',
+	password: 'kanha0812'
 }];
 
 var index = require('./routes/index');
@@ -36,6 +36,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'images')));
 app.use(cookieSession({
 	name: 'session',
 	secret: 'donttellanyone'
