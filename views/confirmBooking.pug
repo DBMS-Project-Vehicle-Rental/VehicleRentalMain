@@ -32,89 +32,133 @@ html
               a(href='/login') Logout
     .container(style="margin-top:160px; body: flex;")
       h2 Booking Summary
-    .container(style='body: flex;')
-      div(style='margin: 5%;')
-        for data in vdata
-          .row
-            .col-md-2(style='text-align: right;')
-              label User ID :
-            .col-md-10
-              |  #{uid}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Company :
-            .col-md-10
-              |  #{data.company}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Model :
-            .col-md-10
-              |  #{data.model}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Plate Number :
-            .col-md-10
-              |  #{data.plno}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Type of Vehicle :
-            .col-md-10
-              |  #{data.type}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Seats :
-            .col-md-10
-              |  #{data.seats}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Color :
-            .col-md-10
-              |  #{data.color}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Pickup from Garage :
-            .col-md-10
-              |  #{data.gid}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Booked from :
-            .col-md-10
-              |  #{fromDate}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Booked till :
-            .col-md-10
-              |  #{toDate}
-          .row
-            .col-md-2(style='text-align: right;')
-              label Booked for :
-            .col-md-10
-              |  #{ndays} Day(s)
-          .row
-            .col-md-2(style='text-align: right;')
-              label Cost(per Day) :
-            .col-md-10
-              |  rs. #{data.cost}/-
-          .row
-            .col-md-2(style='text-align: right;')
-              h3 Final Cost :
-            .col-md-10
-              h3  Rs. #{data.cost*ndays}/-
-    .container(style='body: flex; margin-bottom: 10%; margin-top: 5%')
-      form(method='post', action='/confirmBooking/payment')
-        h2 Please Select Mode of Payment
-        .row(style='margin: 7%')
-          .col-md-4(style='text-align: center;')
-            input.radio-inline.choice(type='radio', name='pay', value="Cash", checked="true")
-            h3(style='padding: 5px;') Cash
-          .col-md-4(style='text-align: center;')
-            input.radio-inline.choice(type='radio', name='pay', value="Credit" style='padding-left: 20px;')
-            h3(style='padding: 5px;') Credit/Debit Card
-          .col-md-4(style='text-align: center;')
-            input.radio-inline.choice(type='radio', name='pay', value="Wallet" style='padding-left: 20px;')
-            h3(style='padding: 5px;') Online Wallets
-        .row(style='margin-left: 5%')
-          .col-md-6(style='text-align: center;')
-            input.btn.btn-success.longer#Pay(type="submit", name="Pay", value='Pay')
-          .col-md-6(style='text-align: center;')
-            a.btn.btn-danger.longer(href='/homeUser') Cancel
+    if (value == 1)
+      .container(style='body: flex;')
+        div(style='margin: 5%;')
+          for data in vdata
+            .row
+              .col-md-2(style='text-align: right;')
+                label User ID :
+              .col-md-10
+                |  #{uid}
+            .row
+              .col-md-2(style='text-align: right;')
+                label Company :
+              .col-md-10
+                |  #{data.company}
+            .row
+              .col-md-2(style='text-align: right;')
+                label Model :
+              .col-md-10
+                |  #{data.model}
+            .row
+              .col-md-2(style='text-align: right;')
+                label Plate Number :
+              .col-md-10
+                |  #{data.plno}
+            .row
+              .col-md-2(style='text-align: right;')
+                label Type of Vehicle :
+              .col-md-10
+                |  #{data.type}
+            .row
+              .col-md-2(style='text-align: right;')
+                label Seats :
+              .col-md-10
+                |  #{data.seats}
+            .row
+              .col-md-2(style='text-align: right;')
+                label Color :
+              .col-md-10
+                |  #{data.color}
+            .row
+              .col-md-2(style='text-align: right;')
+                label Pickup from Garage :
+              .col-md-10
+                |  #{data.gid}
+            .row
+              .col-md-2(style='text-align: right;')
+                label Booked from :
+              .col-md-10
+                |  #{fromDate}
+            .row
+              .col-md-2(style='text-align: right;')
+                label Booked till :
+              .col-md-10
+                |  #{toDate}
+            .row
+              .col-md-2(style='text-align: right;')
+                label Booked for :
+              .col-md-10
+                |  #{ndays} Day(s)
+            .row
+              .col-md-2(style='text-align: right;')
+                label Cost(per Day) :
+              .col-md-10
+                |  rs. #{data.cost}/-
+            .row
+              .col-md-2(style='text-align: right;')
+                h3 Final Cost :
+              .col-md-10
+                h3  Rs. #{data.cost*ndays}/-
+      .container(style='body: flex; margin-bottom: 10%; margin-top: 5%')
+        form(method='post', action='/confirmBooking/payment')
+          h2 Please Select Mode of Payment
+          .row(style='margin: 7%')
+            .col-md-4(style='text-align: center;')
+              input.radio-inline.choice(type='radio', name='pay', value="Cash", checked="true")
+              h3(style='padding: 5px;') Cash
+            .col-md-4(style='text-align: center;')
+              input.radio-inline.choice(type='radio', name='pay', value="Credit" style='padding-left: 20px;')
+              h3(style='padding: 5px;') Credit/Debit Card
+            .col-md-4(style='text-align: center;')
+              input.radio-inline.choice(type='radio', name='pay', value="Wallet" style='padding-left: 20px;')
+              h3(style='padding: 5px;') Online Wallets
+          .row(style='margin-left: 5%')
+            .col-md-6(style='text-align: center;')
+              input.btn.btn-success.longer#Pay(type="submit", name="Pay", value='Pay')
+            .col-md-6(style='text-align: center;')
+              a.btn.btn-danger.longer(href='/homeUser') Cancel
+    else if (value == 2)
+      .container(style='body: flex; text-align: center')
+        .row(style='margin:5%;')
+          .col-md-3
+          .col-md-6
+            .col-md-8
+              h1 Payment Success
+            .col-md-4(style='color: green; padding-top: 10px; font-size: 2em')
+              .glyphicon.glyphicon-ok
+          .col-md-3
+        .row(style='margin:5%;')
+          .col-md-3
+          .col-md-6
+            .alert.alert-success(stytle='text-align: center; padding: 20px;')
+              h3 Booking is Confirmed !
+          .col-md-3
+    else if (value == 3)
+      .container(style='body: flex; text-align: center')
+        .row(style='margin:5%;')
+          .col-md-3
+          .col-md-6
+            .col-md-8
+              h1 Payment Failed
+            .col-md-4(style='color: red; padding-top: 10px; font-size: 2em')
+              .glyphicon.glyphicon-remove
+          .col-md-3
+        .row(style='margin:5%;')
+          .col-md-3
+          .col-md-6
+            .alert.alert-danger(stytle='text-align: center; padding: 20px;')
+              h3 Wallet Balance is Insufficient !
+          .col-md-3
+    if (value == 2 || value == 3)
+      .container(style='body: flex; text-align: center')
+        .row(style='margin:5%;')
+          .col-md-4
+          .col-md-4(style='padding-right: 60px')
+            a(href='/homeUser')
+              if (value == 2)
+                button.btn.btn-info.btn-block.btn-lg(value='Done') Done
+              else if (value == 3)
+                button.btn.btn-info.btn-block.btn-lg(value='Retry') Retry
+          .col-md-4

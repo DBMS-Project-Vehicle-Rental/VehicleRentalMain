@@ -1,7 +1,7 @@
 var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
-var alert = require('alert-node');
+// var alert = require('alert-node');
 
 var creds = require('../app');
 
@@ -55,7 +55,7 @@ router.get('/', function(req, res, next) {
 
 			vehicleData.push(elem);
 			console.log(vehicleData);
-			res.render('confirmBooking', { title: 'Confirm Booking', vdata: vehicleData, toDate: toDate, fromDate: fromDate, uid: uid, ndays: ndays });
+			res.render('confirmBooking', { title: 'Confirm Booking', vdata: vehicleData, toDate: toDate, fromDate: fromDate, uid: uid, ndays: ndays, value: 1  });
 		});
 	});
 });
@@ -94,16 +94,17 @@ router.post('/payment', function(req, res, next) {
 
 				console.log(result);
 				if(result[0].poss == 1) {
-					alert("Success","notify-send");
-
+					// alert("Success","notify-send");
 					var sql_3 = "INSERT INTO Booking (User_ID, Plate_No, Start_Date, End_Date, No_of_Days, Pay_ID) VALUES ('" + uid + "', '" + plno + "', '" + fromDate + "', '" + toDate + "', DATEDIFF(End_Date, Start_Date)+1, (SELECT MAX(Pay_ID) FROM Payment));";
 					con.query(sql_3, function(err, result) {
 						if(err) throw err;
 					});
+          res.render('confirmBooking', { title: 'Payment Status', value: 2 });
 				} else {
-					alert("Failed","notify-send");
+					// alert("Failed","notify-send");
+          res.render('confirmBooking', { title: 'Payment Status', value: 3 });
 				}
-				res.redirect('/homeUser');
+				// res.redirect('/homeUser');
 			});
 		})
 	});

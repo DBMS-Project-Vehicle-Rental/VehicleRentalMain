@@ -44,7 +44,8 @@ router.post('/verify', function(req, res, next) {
 				if(err) throw err;
 
 				if(result=='') {
-					res.redirect(302, '/login');
+					// res.redirect(302, '/login');
+					res.render('login', { title: 'Login', value: 1 });
 					return;
 				}
 
@@ -65,7 +66,8 @@ router.post('/verify', function(req, res, next) {
 					console.log('False')
 					//res.write('Credentials invalid... Redirecting to login...')
 					//sleep.sleep(2)
-					res.redirect(302, '/login')
+					// res.redirect(302, '/login')
+					res.render('login', { title: 'Login', value: 1 });
 				}
 			});
 		}
@@ -75,7 +77,8 @@ router.post('/verify', function(req, res, next) {
 				if(err) throw err;
 
 				if(result=='') {
-					res.redirect(302, '/login');
+					// res.redirect(302, '/login');
+					res.render('login', { title: 'Login', value: 1 });
 					return;
 				}
 
@@ -90,14 +93,16 @@ router.post('/verify', function(req, res, next) {
 					//res.redirect('/homeEmp?uid=' + req.body.username)
 					req.session.emp = 1;
 					req.session.id = req.body.username;
-					res.redirect('/homeEmp');
+					// res.redirect('/homeEmp');
+					res.render('login', { title: 'Login', value: 1 });
 				}
 				else {
 					console.log('False')
 
 					//res.write('Credentials invalid... Redirecting to login...')
 					//sleep.sleep(2)
-					res.redirect(302, '/login')
+					// res.redirect(302, '/login')
+					res.render('login', { title: 'Login', value: 1 });
 				}
 			});
 		}

@@ -15,6 +15,9 @@ html
           .agileits-2
             h2 Login
           form(action='/login/verify', method='post')
+            if (value == 1)
+              .w3l(style='color:red')
+                h3 Invalid Username/Password !
             .w3-user
               span
                 i.fa.fa-user-o(aria-hidden='true')
