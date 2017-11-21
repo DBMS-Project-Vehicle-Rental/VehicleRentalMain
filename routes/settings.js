@@ -1,6 +1,7 @@
 var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
+var fs = require('fs');
 
 var creds = require('../app');
 
@@ -39,8 +40,21 @@ router.get('/', function(req, res, next) {
 				ob['wallet'] = result[0].Wallet;
 				balance = ob['wallet'];
 				d.push(ob);
-				var imgSrc = 'http://localhost:3000/images/'+id+'.jpg';
-				res.render('settings', {title: 'User\'s Settings', uid: id, valid: 3, data: d,imgSrc: imgSrc});
+
+				var path = './public/images/ProfileUser';
+				var imgSrc = '/images/ProfileUser/';
+
+				if (fs.existsSync(path + id + '.png')) {
+					console.log('png exists');
+					imgSrc = imgSrc + id + '.png';
+				} else if (fs.existsSync(path + id + '.jpg')) {
+					console.log('jpg exists');
+					imgSrc = imgSrc + id + '.jpg';
+				} else {
+					console.log('png/jpg does not exists');
+					imgSrc = imgSrc + 'default.jpg';
+				}
+				res.render('settings', {title: 'User\'s Settings', uid: id, valid: 3, data: d, imgSrc: imgSrc});
 				console.log(ob);
 				console.log(d);
 			});

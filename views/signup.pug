@@ -27,7 +27,7 @@ html
             .w3l
               label Please Choose a Category !
           else if (value == 2)
-            form.form-horizontal.formText(action='/signup/submitUser', method='post')
+            form.form-horizontal.formText(action='/signup/submitUser', method='post', enctype="multipart/form-data")
               div.form-group
                 label.control-label.col-md-3.w3l Name* :
                 .col-md-7
@@ -51,7 +51,7 @@ html
               div.form-group
                 label.control-label.col-md-3.w3l(for='password') Password* :
                 .col-md-7
-                  input.form-control(type='password', placeholder='Enter Passowrd', name='pwd',required='')
+                  input.form-control(type='password', placeholder='Enter Password', name='pwd',required='')
               div.form-group
                 label.control-label.col-md-3.w3l Wallet* :
                 .col-md-7
