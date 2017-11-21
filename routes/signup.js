@@ -62,10 +62,10 @@ router.post('/submitUser', function(req, res, next) {
 				var pic = req.files.photo;
 				var path = './public/images/ProfileUser';
 				var fValid = true;
-				if (pic.mimetype == "image/png") {
-					path = path + req.body.usrid + ".png";
+				if(pic.mimetype == "image/png") {
+					path = path + (req.body.usrid).toUpperCase() + ".png";
 				} else if (pic.mimetype == "image/jpeg") {
-					path = path + req.body.usrid + ".jpg";
+					path = path + (req.body.usrid).toUpperCase() + ".jpg";
 				} else {
 					fValid = false;
 				}

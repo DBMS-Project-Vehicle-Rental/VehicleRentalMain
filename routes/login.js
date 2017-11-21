@@ -93,8 +93,7 @@ router.post('/verify', function(req, res, next) {
 					//res.redirect('/homeEmp?uid=' + req.body.username)
 					req.session.emp = 1;
 					req.session.id = req.body.username;
-					// res.redirect('/homeEmp');
-					res.render('login', { title: 'Login', value: 1 });
+					res.redirect('/homeEmp');
 				}
 				else {
 					console.log('False')

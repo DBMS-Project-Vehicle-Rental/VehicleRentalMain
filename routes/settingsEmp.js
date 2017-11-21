@@ -1,6 +1,7 @@
 var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
+var fs = require('fs');
 
 var creds = require('../app');
 
@@ -35,10 +36,23 @@ router.get('/', function(req, res, next) {
 				ob['email'] = result[0].Email;
 				ob['pno'] = result[0].Phone_No;
 				ob['address'] = result[0].Address;
-
 				d.push(ob);
-				//var imgSrc = 'http://localhost:3000/images/'+id+'.jpg';
-				var imgSrc = 'http://localhost:3000/images/noImage.jpg';
+
+
+				var path = './public/images/ProfileUser';
+				var imgSrc = '/images/ProfileUser/';
+
+				if (fs.existsSync(path + id.toUpperCase() + '.png')) {
+					console.log('png exists');
+					imgSrc = imgSrc + id.toUpperCase() + '.png';
+				} else if (fs.existsSync(path + id.toUpperCase() + '.jpg')) {
+					console.log('jpg exists');
+					imgSrc = imgSrc + id.toUpperCase() + '.jpg';
+				} else {
+					console.log('png/jpg does not exists');
+					imgSrc = imgSrc + 'default.jpg';
+				}
+
 				res.render('settingsEmp', {title: 'Employee Settings', eid: id, valid: 3, data: d,imgSrc: imgSrc});
 				console.log(ob);
 				console.log(d);

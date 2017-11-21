@@ -44,14 +44,14 @@ router.get('/', function(req, res, next) {
 				var path = './public/images/ProfileUser';
 				var imgSrc = '/images/ProfileUser/';
 
-				if (fs.existsSync(path + id + '.png')) {
+				if (fs.existsSync(path + id.toUpperCase() + '.png')) {
 					console.log('png exists');
-					imgSrc = imgSrc + id + '.png';
-				} else if (fs.existsSync(path + id + '.jpg')) {
+					imgSrc = imgSrc + id.toUpperCase() + '.png';
+				} else if (fs.existsSync(path + id.toUpperCase() + '.jpg')) {
 					console.log('jpg exists');
-					imgSrc = imgSrc + id + '.jpg';
+					imgSrc = imgSrc + id.toUpperCase() + '.jpg';
 				} else {
-					console.log('png/jpg does not exists');
+					console.log('png/jpg/jpeg does not exists');
 					imgSrc = imgSrc + 'default.jpg';
 				}
 				res.render('settings', {title: 'User\'s Settings', uid: id, valid: 3, data: d, imgSrc: imgSrc});
