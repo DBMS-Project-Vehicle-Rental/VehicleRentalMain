@@ -46,7 +46,7 @@ router.post('/', function(req, res, next) {
 		} else {
 			toSend = 'bike';
 		}
-		var sql = "Select Plate_No,v.Model_Name as Model,Company,Type,V_Type,Seats,Quantity,Color,G_ID, Cost from Vehicles v, VehicleDetails vd where Quantity>0 and v.Model_Name=vd.Model_Name and V_type='"+toSend+"';";
+		var sql = "Select Plate_No,v.Model_Name as Model,Company,Type,V_Type,Seats,Units,Color,G_ID, Cost from Vehicles v, VehicleDetails vd where Booked=0 and v.Model_Name=vd.Model_Name and V_type='"+toSend+"';";
 		console.log(sql);
 		con.query(sql, function(err, result) {
 			if(err) throw err;
@@ -59,7 +59,7 @@ router.post('/', function(req, res, next) {
 				elem["type"]= result[i].Type;
 				elem["vcltype"]= result[i].V_Type;
 				elem["seats"]= result[i].Seats;
-				elem["qty"]= result[i].Quantity;
+				elem["qty"]= result[i].Units;
 				elem["color"]= result[i].Color;
 				elem["gid"]= result[i].G_ID;
 				elem["cost"]= result[i].Cost;

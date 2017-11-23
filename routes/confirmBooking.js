@@ -5,7 +5,7 @@ var router = express.Router();
 
 var creds = require('../app');
 
-var uid, plno, toDate, fromDate, cost, tcost;
+var uid, plno, toDate, fromDate, cost, tcost, modelnm;
 
 // GET login page.
 router.get('/', function(req, res, next) {
@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
 		console.log('Connected to VECHICLE_RENTAL database');
 		var toSend;
 
-		var sql = "Select Plate_No,v.Model_Name as Model,Company,Type,V_Type,Seats,Quantity,Color,G_ID, Cost from Vehicles v, VehicleDetails vd where v.Model_Name=vd.Model_Name and Plate_No='"+plno+"';";
+		var sql = "Select Plate_No,v.Model_Name as Model,Company,Type,V_Type,Seats,Units,Color,G_ID, Cost from Vehicles v, VehicleDetails vd where v.Model_Name=vd.Model_Name and Plate_No='"+plno+"';";
 		console.log(sql);
 		con.query(sql, function(err, result) {
 			if(err) throw err;
@@ -41,12 +41,12 @@ router.get('/', function(req, res, next) {
 			var vehicleData = [];
 			var elem = new Object();
 			elem["plno"] = result[0].Plate_No;
-			elem["model"] = result[0].Model;
+			modelnm = elem["model"] = result[0].Model;
 			elem["company"] = result[0].Company;
 			elem["type"] = result[0].Type;
 			elem["vcltype"] = result[0].V_Type;
 			elem["seats"] = result[0].Seats;
-			elem["qty"] = result[0].Quantity;
+			elem["qty"] = result[0].Units;
 			elem["color"] = result[0].Color;
 			elem["gid"] = result[0].G_ID;
 			elem['cost'] = result[0].Cost;
@@ -98,6 +98,16 @@ router.post('/payment', function(req, res, next) {
 					var sql_3 = "INSERT INTO Booking (User_ID, Plate_No, Start_Date, End_Date, No_of_Days, Pay_ID) VALUES ('" + uid + "', '" + plno + "', '" + fromDate + "', '" + toDate + "', DATEDIFF(End_Date, Start_Date)+1, (SELECT MAX(Pay_ID) FROM Payment));";
 					con.query(sql_3, function(err, result) {
 						if(err) throw err;
+						var sql_5 = "Update VehicleDetails set Booked = 1 where Plate_No = '"+plno+"';";
+						con.query(sql_5, function(err, result) {
+							if(err) throw err;
+							if(payMethod=='Wallet') {
+								var sql_4 = "Update User set Wallet = (Wallet - "+tcost+" ) where User_ID = '"+uid+"';";
+								con.query(sql_4, function(err, result) {
+									if(err) throw err;
+								});
+							}
+						});
 					});
           res.render('confirmBooking', { title: 'Payment Status', value: 2 });
 				} else {
