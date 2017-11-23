@@ -55,7 +55,7 @@ router.post('/submitUser', function(req, res, next) {
 		con.query(sql, function(err, result) {
 			if(err) throw err;
 
-			console.log("Photos: " + req.files.photo);
+			//console.log("Photos: " + req.files.photo);
 			if (!req.files)	console.log('No files were uploaded.');
 			else {
 				console.log(req.files.photo.mimetype);
@@ -100,7 +100,29 @@ router.post('/submitEmployee', function(req, res, next) {
 		var sql = "INSERT INTO Employee VALUES('"+req.body.empid+"','"+req.body.enm+"','"+req.body.email+"',"+req.body.phno+",'"+req.body.addr+"','"+req.body.pwd+"','"+req.body.gid+"');";
 		con.query(sql, function(err, result) {
 			if(err) throw err;
-			
+			//console.log("Photos: " + req.files.photo);
+			if (!req.files)	console.log('No files were uploaded.');
+			else {
+				console.log(req.files.photo.mimetype);
+				var pic = req.files.photo;
+				var path = './public/images/ProfileEmp/';
+				var fValid = true;
+				if(pic.mimetype == "image/png") {
+					path = path + (req.body.empid).toUpperCase() + ".png";
+				} else if (pic.mimetype == "image/jpeg") {
+					path = path + (req.body.usrid).toUpperCase() + ".jpg";
+				} else {
+					fValid = false;
+				}
+
+				if (fValid) {
+					pic.mv(path, function(err) {
+						if(err) console.log(err);
+						else console.log("File uploaded");
+					});
+				}
+			}
+
 			res.redirect('/login');
 		});
 	});

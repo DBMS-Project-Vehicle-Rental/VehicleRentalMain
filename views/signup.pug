@@ -70,8 +70,8 @@ html
                 .col-md-8
                   input.btn.btn-block.btn-success.btn-lg(type='submit', name='signup', value='Done')
                 .col-md-2
-          else
-            form.form-horizontal.formText(action='/signup/submitEmployee', method='post')
+          else ()
+            form.form-horizontal.formText(action='/signup/submitEmployee', method='post', enctype="multipart/form-data")
               div.form-group
                 label.control-label.col-md-3.w3l Employee Name* :
                 .col-md-7
