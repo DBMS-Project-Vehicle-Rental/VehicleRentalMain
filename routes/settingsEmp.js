@@ -40,8 +40,8 @@ router.get('/', function(req, res, next) {
 				d.push(ob);
 
 
-				var path = './public/images/ProfileUser/';
-				var imgSrc = '/images/ProfileUser/';
+				var path = './public/images/ProfileEmp/';
+				var imgSrc = '/images/ProfileEmp/';
 
 				if (fs.existsSync(path + id.toUpperCase() + '.png')) {
 					console.log('png exists');
@@ -53,7 +53,7 @@ router.get('/', function(req, res, next) {
 					console.log('png/jpg/jpeg does not exists');
 					img = imgSrc = imgSrc + 'default.jpg';
 				}
-				
+
 				res.render('settingsEmp', {title: 'Employee Settings', eid: id, valid: 3, data: d,imgSrc: imgSrc});
 				console.log(ob);
 				console.log(d);
