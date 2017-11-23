@@ -41,7 +41,7 @@ router.get('/', function(req, res, next) {
 				balance = ob['wallet'];
 				d.push(ob);
 
-				var path = './public/images/ProfileUser';
+				var path = './public/images/ProfileUser/';
 				var imgSrc = '/images/ProfileUser/';
 
 				if (fs.existsSync(path + id.toUpperCase() + '.png')) {
@@ -68,8 +68,6 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-
-
 router.post('/change', function(req, res, next) {
 	id = req.session.id;
 	res.render('settings', {title: 'User\'s Settings', uid: id, valid: 4, data: d});
@@ -79,9 +77,6 @@ router.post('/changeBal', function(req, res, next) {
 	id = req.session.id;
 	res.render('settings', {title: 'User\'s Settings', uid: id, valid: 5, data: d, balance: balance});
 });
-
-
-
 
 router.post('/changePass', function(req, res, next) {
 	//res.render('settings', {title: 'User\'s Settings', uid: id, valid: 4, data: d});
