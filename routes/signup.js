@@ -60,7 +60,7 @@ router.post('/submitUser', function(req, res, next) {
 			else {
 				console.log(req.files.photo.mimetype);
 				var pic = req.files.photo;
-				var path = './public/images/ProfileUser';
+				var path = './public/images/ProfileUser/';
 				var fValid = true;
 				if(pic.mimetype == "image/png") {
 					path = path + (req.body.usrid).toUpperCase() + ".png";
