@@ -5,7 +5,7 @@ var router = express.Router();
 
 var creds = require('../app');
 
-var uid, plno, toDate, fromDate, cost;
+var uid, plno, toDate, fromDate, cost, tcost;
 
 // GET login page.
 router.get('/', function(req, res, next) {
@@ -50,7 +50,7 @@ router.get('/', function(req, res, next) {
 			elem["color"] = result[0].Color;
 			elem["gid"] = result[0].G_ID;
 			elem['cost'] = result[0].Cost;
-
+			tcost = (result[0].Cost)*ndays;
 			cost = elem['cost'];
 
 			vehicleData.push(elem);
@@ -76,14 +76,14 @@ router.post('/payment', function(req, res, next) {
 
 		console.log(uid);
 		console.log(req.body);
-		var sql = "INSERT INTO Payment (User_ID, Pay_Date, Amount, Method, Success) VALUES ('" + uid + "', CURDATE(), " + cost + ", '" + payMethod + "', NULL);";
+		var sql = "INSERT INTO Payment (User_ID, Pay_Date, Amount, Method, Success) VALUES ('" + uid + "', CURDATE(), " + tcost + ", '" + payMethod + "', NULL);";
 		console.log(sql);
 		con.query(sql, function(err, result) {
 			if(err) throw err;
 
 			//console.log(result);
 
-			var sql_1 = "UPDATE Payment SET Success = @poss;";
+			var sql_1 = "UPDATE Payment SET Success = @poss where Pay_ID = @mpid;";
 			console.log(sql_1);
 			con.query(sql_1, function(err, result) {
 				if(err) throw err;
