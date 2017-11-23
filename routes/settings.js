@@ -9,6 +9,7 @@ var id;
 var d = [];
 var ob = new Object();
 var balance;
+var img;
 
 router.get('/', function(req, res, next) {
 	console.log("Entered /settings");
@@ -46,13 +47,13 @@ router.get('/', function(req, res, next) {
 
 				if (fs.existsSync(path + id.toUpperCase() + '.png')) {
 					console.log('png exists');
-					imgSrc = imgSrc + id.toUpperCase() + '.png';
+					img = imgSrc = imgSrc + id.toUpperCase() + '.png';
 				} else if (fs.existsSync(path + id.toUpperCase() + '.jpg')) {
 					console.log('jpg exists');
-					imgSrc = imgSrc + id.toUpperCase() + '.jpg';
+					img = imgSrc = imgSrc + id.toUpperCase() + '.jpg';
 				} else {
 					console.log('png/jpg/jpeg does not exists');
-					imgSrc = imgSrc + 'default.jpg';
+					img = imgSrc = imgSrc + 'default.jpg';
 				}
 				res.render('settings', {title: 'User\'s Settings', uid: id, valid: 3, data: d, imgSrc: imgSrc});
 				console.log(ob);
@@ -70,12 +71,12 @@ router.get('/', function(req, res, next) {
 
 router.post('/change', function(req, res, next) {
 	id = req.session.id;
-	res.render('settings', {title: 'User\'s Settings', uid: id, valid: 4, data: d});
+	res.render('settings', {title: 'User\'s Settings', uid: id, valid: 4, data: d, imgSrc: img});
 });
 
 router.post('/changeBal', function(req, res, next) {
 	id = req.session.id;
-	res.render('settings', {title: 'User\'s Settings', uid: id, valid: 5, data: d, balance: balance});
+	res.render('settings', {title: 'User\'s Settings', uid: id, valid: 5, data: d, balance: balance, imgSrc: img});
 });
 
 router.post('/changePass', function(req, res, next) {
@@ -117,7 +118,7 @@ router.post('/changePass', function(req, res, next) {
 				}
 
 				console.log("valid : " + valid);
-				res.render('settings', {title: 'User\'s Settings', uid: id, valid: valid, data: d});
+				res.render('settings', {title: 'User\'s Settings', uid: id, valid: valid, data: d, imgSrc: img});
 			});
 		} else {
 				//Not User
@@ -149,7 +150,7 @@ router.post('/updateBal', function(req, res, next) {
 			con.query(sql, function(err, result) {
 				if(err) throw err;
 			});
-			res.render('settings', {title: 'User\'s Settings', uid: id, valid: 6, data: d, totBal: totBal });
+			res.render('settings', {title: 'User\'s Settings', uid: id, valid: 6, data: d, totBal: totBal , imgSrc: img});
 		});
 	});
 });

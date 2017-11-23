@@ -100,6 +100,7 @@ router.post('/submitEmployee', function(req, res, next) {
 		var sql = "INSERT INTO Employee VALUES('"+req.body.empid+"','"+req.body.enm+"','"+req.body.email+"',"+req.body.phno+",'"+req.body.addr+"','"+req.body.pwd+"','"+req.body.gid+"');";
 		con.query(sql, function(err, result) {
 			if(err) throw err;
+			
 			res.redirect('/login');
 		});
 	});

@@ -8,6 +8,7 @@ var creds = require('../app');
 var id;
 var d = [];
 var ob = new Object();
+var img;
 
 router.get('/', function(req, res, next) {
 	console.log("Entered /settingsEmp");
@@ -39,20 +40,20 @@ router.get('/', function(req, res, next) {
 				d.push(ob);
 
 
-				var path = './public/images/ProfileUser';
+				var path = './public/images/ProfileUser/';
 				var imgSrc = '/images/ProfileUser/';
 
 				if (fs.existsSync(path + id.toUpperCase() + '.png')) {
 					console.log('png exists');
-					imgSrc = imgSrc + id.toUpperCase() + '.png';
+					img = imgSrc = imgSrc + id.toUpperCase() + '.png';
 				} else if (fs.existsSync(path + id.toUpperCase() + '.jpg')) {
 					console.log('jpg exists');
-					imgSrc = imgSrc + id.toUpperCase() + '.jpg';
+					img = imgSrc = imgSrc + id.toUpperCase() + '.jpg';
 				} else {
-					console.log('png/jpg does not exists');
-					imgSrc = imgSrc + 'default.jpg';
+					console.log('png/jpg/jpeg does not exists');
+					img = imgSrc = imgSrc + 'default.jpg';
 				}
-
+				
 				res.render('settingsEmp', {title: 'Employee Settings', eid: id, valid: 3, data: d,imgSrc: imgSrc});
 				console.log(ob);
 				console.log(d);
@@ -66,7 +67,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/change', function(req, res, next) {
 	id = req.session.id;
-	res.render('settingsEmp', {title: 'Employee Settings', eid: id, valid: 4, data: d});
+	res.render('settingsEmp', {title: 'Employee Settings', eid: id, valid: 4, data: d, imgSrc: img});
 });
 
 router.post('/changePass', function(req, res, next) {
@@ -111,7 +112,7 @@ router.post('/changePass', function(req, res, next) {
 
 				console.log("valid : " + valid);
 
-				res.render('settingsEmp', {title: 'Employee Settings', eid: id, valid: valid, data: d});
+				res.render('settingsEmp', {title: 'Employee Settings', eid: id, valid: valid, data: d, imgSrc: img});
 			});
 		} else {
         //User Settings
