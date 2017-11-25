@@ -7,10 +7,9 @@ var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session');
 const fileUpload = require('express-fileupload');
 
-
 var creds = [{
-	username: 'root',
-	password: 'p@t@n@hi'
+	username: 'devansh',
+	password: 'kanha0812'
 }];
 
 var index = require('./routes/index');
@@ -22,6 +21,7 @@ var pb = require('./routes/previousBookings');
 var settings = require('./routes/settings');
 var settingsEmp = require('./routes/settingsEmp');
 var signup = require('./routes/signup');
+var av = require('./routes/addVehicles');
 
 var app = express();
 
@@ -56,7 +56,8 @@ app.use('/confirmBooking', cb);
 app.use('/previousBookings', pb);
 app.use('/settings', settings);
 app.use('/settingsEmp', settingsEmp);
-app.use('/signup',signup);
+app.use('/signup', signup);
+app.use('/addVehicles', av);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

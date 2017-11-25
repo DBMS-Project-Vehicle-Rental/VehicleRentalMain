@@ -1,0 +1,31 @@
+doctype html
+html
+  body
+    form(method='post', action='/addVehicles')
+      // Make all as required specially the ones that take integer values
+      label Plate_No:
+      input#plno(type="text", name="plno")
+      br
+      label Model_Name:
+      input#modname(type="text", name="modname")
+      br
+      label Company:
+      input#comp(type="text", name="compname")
+      br
+      // Make this as drop down
+      label V_Type:
+      input#vtype(type="text", name="vtype")
+      br
+      label Type:
+      input#type(type="text", name="type")
+      br
+      label Seats:
+      input#seats(type="text", name="seats")
+      br
+      label Cost:
+      input#cost(type="text", name="cost")
+      br
+      label Color:
+      input#color(type="text", name="color")
+      br
+      input(type="submit", name="add", value="Add")
