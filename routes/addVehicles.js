@@ -8,7 +8,7 @@ var empid;
 
 router.get('/', function(req, res, next) {
 	if(req.session.emp) {
-		res.render('addVehicles');
+		res.render('addVehicles',{title: 'Add Vehicles', value: 0});
 	} else {
 		res.redirect('/login');
 	}
@@ -30,7 +30,7 @@ router.post('/', function(req, res, next) {
 
 			console.log("Connected");
 
-			var sql = "SELECT * FROM VehicleDetails WHERE Plate_No = '" + req.body.plno + "' AND G_ID = (SELECT G_ID FROM Employee WHERE User_ID = '" + empid + "');";
+			var sql = "SELECT * FROM VehicleDetails WHERE Plate_No = '" + req.body.plno + "';";
 			console.log(sql);
 			con.query(sql, function(err, result) {
 				if(err) throw err;
@@ -53,12 +53,13 @@ router.post('/', function(req, res, next) {
 							console.log("Vehicle added");
 
 							// Show as SUCCESS
-							res.redirect('/homeEmp');
+							// res.redirect('/homeEmp');
+							res.render('addVehicles',{title: 'Add Vehicles', value: 1});
 						});
 					});
 				} else {
 					console.log("Duplicate");
-
+					res.render('addVehicles',{title: 'Add Vehicles', value: 2});
 					// Show as FAILED
 				}
 			});

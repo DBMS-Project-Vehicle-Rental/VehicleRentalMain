@@ -8,8 +8,8 @@ var cookieSession = require('cookie-session');
 const fileUpload = require('express-fileupload');
 
 var creds = [{
-	username: 'devansh',
-	password: 'kanha0812'
+	username: 'root',
+	password: 'p@t@n@hi'
 }];
 
 var index = require('./routes/index');

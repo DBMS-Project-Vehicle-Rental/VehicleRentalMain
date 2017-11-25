@@ -1,31 +1,150 @@
 doctype html
 html
+  head
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+    link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    //link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(href='//fonts.googleapis.com/css?family=Josefin+Sans', rel='stylesheet')
+    link(href='//fonts.googleapis.com/css?family=Raleway', rel='stylesheet')
+    link(href='/stylesheets/style.css', rel='stylesheet')
   body
-    form(method='post', action='/addVehicles')
-      // Make all as required specially the ones that take integer values
-      label Plate_No:
-      input#plno(type="text", name="plno")
-      br
-      label Model_Name:
-      input#modname(type="text", name="modname")
-      br
-      label Company:
-      input#comp(type="text", name="compname")
-      br
-      // Make this as drop down
-      label V_Type:
-      input#vtype(type="text", name="vtype")
-      br
-      label Type:
-      input#type(type="text", name="type")
-      br
-      label Seats:
-      input#seats(type="text", name="seats")
-      br
-      label Cost:
-      input#cost(type="text", name="cost")
-      br
-      label Color:
-      input#color(type="text", name="color")
-      br
-      input(type="submit", name="add", value="Add")
+    nav.navbar.navbar-fixed-top.topHeader
+      .container-fluid.row
+        .container(style='body: flex')
+          div
+            .navbar-header(style='padding-top: 7px')
+              a.logo(href='')
+            .nav.navbar-nav.navbar-right.welcome
+              label.text-capitalize Welcome  #{eid} !
+      .container-fluid.row(style='background-color: #018DB1')
+        .container(style='body: flex')
+          ul.nav.nav-pills.tabsButtons
+            li
+              a(href='/homeEmp') Garage Details
+            li
+              a(href='/addVehicles') Add Vehicles
+            li
+              a(href='/settingsEmp') Settings
+            li.navbar-right
+              a(href='/login') Logout
+    if(value == 0)
+      div.container(style="margin-top:160px; body: flex")
+        h2 Add more Vehicles to your Garage
+      div.container(style="body: flex;")
+        form.form-horizontal.formText(action='/addVehicles', method='post', enctype="multipart/form-data", style="margin: 5%;")
+          div.form-group
+            label.control-label.col-md-3 Car/Bike* :
+            .col-md-7
+              select(name='vtype',,autofocus='')
+                  option(value='Car') Car
+                  option(value='Bike') Bike
+          div.form-group
+            label.control-label.col-md-3 Plate Number* :
+            .col-md-7
+              input.form-control(type='text', placeholder='Enter Vehicle Plate Number [eg: KA01PQXXXX]', name='plno',required='')
+          div.form-group
+            label.control-label.col-md-3 Company Name* :
+            .col-md-7
+              input.form-control(type='text', placeholder='Enter Company Name [eg: Toyota, Bajaj, etc.]', name='compname',required='')
+          div.form-group
+            label.control-label.col-md-3 Model Name* :
+            .col-md-7
+              input.form-control(type='text', placeholder='Enter Vehicle Model [eg: Etios, Pulsar, etc.]', name='modname',required='')
+          div.form-group
+            label.control-label.col-md-3 Vehicle Type* :
+            .col-md-7
+              input.form-control(type='text', placeholder='Enter Vehicle Type [eg: Hatchback, SUV, etc.]', name='type',required='')
+          div.form-group
+            label.control-label.col-md-3 Seats* :
+            .col-md-7
+              input.form-control(type='number', placeholder='Enter Number of Seats', name='seats',required='', min = 1)
+          div.form-group
+            label.control-label.col-md-3 Color* :
+            .col-md-7
+              input.form-control(type='text', placeholder='Enter Color of  Vehicle', name='color',required='')
+          div.form-group
+            label.control-label.col-md-3 Cost* :
+            .col-md-7
+              input.form-control(type='number', placeholder='Enter PER DAY Cost of Vehicle', name='cost',required='', min = 0)
+          .form-group(style='padding-top: 3%;')
+            .col-md-2
+            .col-md-8
+              input.btn.btn-block.btn-success.btn-lg(type='submit', name="add", value="Add Vehicle")
+            .col-md-2
+            //form(method='post', action='/addVehicles')
+              // Make all as required specially the ones that take integer values
+              label Plate_No:
+              input#plno(type="text", name="plno") ---
+              br
+              label Model_Name:
+              input#modname(type="text", name="modname") ---
+              br
+              label Company:
+              input#comp(type="text", name="compname") ---
+              br
+              // Make this as drop down
+              label V_Type:
+              input#vtype(type="text", name="vtype") ---
+              br
+              label Type:
+              input#type(type="text", name="type") ---
+              br
+              label Seats:
+              input#seats(type="text", name="seats") ---
+              br
+              label Cost:
+              input#cost(type="text", name="cost") ---
+              br
+              label Color:
+              input#color(type="text", name="color") ---
+              br
+              input(type="submit", name="add", value="Add")
+    else if(value == 1)
+      div.container(style="margin-top:160px; body: flex")
+        .container(style='body: flex; text-align: center')
+          .row(style='margin:5%;')
+            .col-md-3
+            .col-md-6
+              .col-md-8
+                h2 Vehicle Added !
+              .col-md-4(style='color: green; padding-top: 10px; font-size: 2em')
+                .glyphicon.glyphicon-ok
+            .col-md-3
+          .row(style='margin:5%;')
+            .col-md-3
+            .col-md-6
+              .alert.alert-success(stytle='text-align: center; padding: 20px;')
+                h5 The new Vehicle has been added to your Garage.
+            .col-md-3
+    else if (value == 2)
+      div.container(style="margin-top:160px; body: flex")
+        .container(style='body: flex; text-align: center')
+          .row(style='margin:5%;')
+            .col-md-3
+            .col-md-6
+              .col-md-8
+                h2 Vehicle Not Added !
+              .col-md-4(style='color: red; padding-top: 10px; font-size: 2em')
+                .glyphicon.glyphicon-remove
+            .col-md-3
+          .row(style='margin:5%;')
+            .col-md-3
+            .col-md-6
+              .alert.alert-danger(stytle='text-align: center; padding: 20px;')
+                h5 Vehicle Already Exists at One of RentalRides's Garages !
+            .col-md-3
+    if (value == 1 || value == 2)
+      .container(style='body: flex; text-align: center')
+        .row(style='margin:5%;')
+          .col-md-4
+          .col-md-4(style='padding-right: 60px')
+            if (value == 1)
+              a(href='/homeEmp')
+                button.btn.btn-info.btn-block.btn-lg(value='Done') Done
+            else if (value == 2)
+              a(href='/addVehicles')
+                button.btn.btn-info.btn-block.btn-lg(value='Retry') Retry
+          .col-md-4
