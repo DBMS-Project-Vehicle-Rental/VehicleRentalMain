@@ -83,7 +83,10 @@ html
                 .col-md-7
                   |  #{data.ndays} day(s)
             .col-md-4
-              .glyphicon.glyphicon-ok(style='font-size: 4em; padding: 70px; color: green;')
+              if (data.vtype == 'Car')
+                .fa.fa-car(style='font-size: 4em; padding: 70px; color:#3fb7d2;')
+              else
+                .fa.fa-motorcycle(style='font-size: 4em; padding: 70px; color:#15c01c')
       else
         div(style='text-align: center; margin: 5%;')
           h4 No Bookings Yet !

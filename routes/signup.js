@@ -3,6 +3,7 @@ var mysql = require('mysql');
 var router = express.Router();
 
 var creds = require('../app');
+var gid1, gid2;
 
 // GET login page.
 router.get('/', function(req, res, next) {
@@ -26,8 +27,8 @@ router.post('/', function(req, res, next) {
 			var sql = "Select G_ID from Garage;";
 			con.query(sql, function(err, result) {
 				if(err) throw err;
-				var gid1 = result[0].G_ID;
-				var gid2 = result[1].G_ID;
+				gid1 = result[0].G_ID;
+				gid2 = result[1].G_ID;
 				res.render('signup', { title: 'Sign Up',value: 1, gdata1: gid1, gdata2: gid2 });
 			});
 		});
@@ -53,32 +54,37 @@ router.post('/submitUser', function(req, res, next) {
 
 		var sql = "INSERT INTO User VALUES('"+req.body.usrid+"','"+req.body.nm+"','"+req.body.email+"',"+req.body.phno+",'"+req.body.addr+"','"+req.body.pwd+"',"+req.body.wallet+");";
 		con.query(sql, function(err, result) {
-			if(err) throw err;
-
-			//console.log("Photos: " + req.files.photo);
-			if (!req.files)	console.log('No files were uploaded.');
-			else {
-				console.log(req.files.photo.mimetype);
-				var pic = req.files.photo;
-				var path = './public/images/ProfileUser/';
-				var fValid = true;
-				if(pic.mimetype == "image/png") {
-					path = path + (req.body.usrid).toUpperCase() + ".png";
-				} else if (pic.mimetype == "image/jpeg") {
-					path = path + (req.body.usrid).toUpperCase() + ".jpg";
-				} else {
-					fValid = false;
-				}
-
-				if (fValid) {
-					pic.mv(path, function(err) {
-						if(err) console.log(err);
-						else console.log("File uploaded");
-					});
-				}
+			if(err)  {
+				// throw err;
+				console.log("Already Exists !!");
+				res.render('signup', { title: 'Sign Up',value: 2, retry: 'true' });
 			}
+			else {
+				//console.log("Photos: " + req.files.photo);
+				if (!req.files.photo)	console.log('No files were uploaded.');
+				else {
+					// console.log(req.files.photo.mimetype);
+					var pic = req.files.photo;
+					var path = './public/images/ProfileUser/';
+					var fValid = true;
+					if(pic.mimetype == "image/png") {
+						path = path + (req.body.usrid).toUpperCase() + ".png";
+					} else if (pic.mimetype == "image/jpeg") {
+						path = path + (req.body.usrid).toUpperCase() + ".jpg";
+					} else {
+						fValid = false;
+					}
 
-			res.redirect('/login');
+					if (fValid) {
+						pic.mv(path, function(err) {
+							if(err) console.log(err);
+							else console.log("File uploaded");
+						});
+					}
+				}
+
+				res.redirect('/login');
+		}
 		});
 	});
 });
@@ -95,35 +101,41 @@ router.post('/submitEmployee', function(req, res, next) {
 
 	con.connect(function(err) {
 		if(err) throw err;
-		console.log("Connected to VEHICLE_RENTAL");
+		// console.log("Connected to VEHICLE_RENTAL");
 
 		var sql = "INSERT INTO Employee VALUES('"+req.body.empid+"','"+req.body.enm+"','"+req.body.email+"',"+req.body.phno+",'"+req.body.addr+"','"+req.body.pwd+"','"+req.body.gid+"');";
 		con.query(sql, function(err, result) {
-			if(err) throw err;
-			//console.log("Photos: " + req.files.photo);
-			if (!req.files)	console.log('No files were uploaded.');
-			else {
-				console.log(req.files.photo.mimetype);
-				var pic = req.files.photo;
-				var path = './public/images/ProfileEmp/';
-				var fValid = true;
-				if(pic.mimetype == "image/png") {
-					path = path + (req.body.empid).toUpperCase() + ".png";
-				} else if (pic.mimetype == "image/jpeg") {
-					path = path + (req.body.usrid).toUpperCase() + ".jpg";
-				} else {
-					fValid = false;
-				}
-
-				if (fValid) {
-					pic.mv(path, function(err) {
-						if(err) console.log(err);
-						else console.log("File uploaded");
-					});
-				}
+			if(err) {
+				// throw err;
+				console.log("Already Exists !!");
+				res.render('signup', { title: 'Sign Up',value: 1, gdata1: gid1, gdata2: gid2, retry: 'true' });
 			}
+			else {
+				//console.log("Photos: " + req.files);
+				if (req.files.photo == null)	console.log('No files were uploaded.');
+				else {
+					console.log(req.files.photo.mimetype);
+					var pic = req.files.photo;
+					var path = './public/images/ProfileEmp/';
+					var fValid = true;
+					if(pic.mimetype == "image/png") {
+						path = path + (req.body.empid).toUpperCase() + ".png";
+					} else if (pic.mimetype == "image/jpeg") {
+						path = path + (req.body.empid).toUpperCase() + ".jpg";
+					} else {
+						fValid = false;
+					}
 
-			res.redirect('/login');
+					if (fValid) {
+						pic.mv(path, function(err) {
+							if(err) console.log(err);
+							else console.log("File uploaded");
+						});
+					}
+				}
+
+				res.redirect('/login');
+			}
 		});
 	});
 });

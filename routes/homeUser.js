@@ -69,7 +69,7 @@ router.post('/', function(req, res, next) {
 			// vehicleData.forEach(function(entry) {
 			//     console.log(entry.plno);
 			// });
-			res.render('homeUser', {title: 'User\'s Home', uid: userid, vdata: vehicleData});
+			res.render('homeUser', {title: 'User\'s Home', uid: userid, vdata: vehicleData, goto: 1});
 
 		});
 	});
