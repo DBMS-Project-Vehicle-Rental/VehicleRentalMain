@@ -1,4 +1,4 @@
-# VechicleRental
+# VechicleRental [COMPLETED] :)
 
 #### DBMS Mini Project
 ---
